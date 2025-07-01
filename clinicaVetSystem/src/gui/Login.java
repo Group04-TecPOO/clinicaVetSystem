@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.multi.MultiPopupMenuUI;
 
 import clases.Recepcionista;
 
@@ -96,24 +97,10 @@ public class Login extends JFrame implements ActionListener {
 		}
 	}
 	protected void do_btnIngresar_actionPerformed(ActionEvent e) {
-		String usuario = txtUsuario.getText();
-	    String contra = txtContraseña.getText();
-	    
-	    if (usuario.equals("76011757") && contra.equals("505050")) {
-	    	txtUsuario.setText("");
-	        txtContraseña.setText("");
-	        
-	     
-	        
-	    } else if(usuario.equals("77788101") && contra.equals("606060")){
-	    	txtUsuario.setText("");
-	      
-	    }
-	    else {
-	        JOptionPane.showMessageDialog(this, "Credenciales incorrectas");
-	        txtUsuario.setText("");
-	        txtContraseña.setText("");
-	    }
-
+		
+		Object tipo;
+		if(tipo.equals("Veterinario")) {
+			
+		}
 	}
 }
