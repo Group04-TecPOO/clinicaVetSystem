@@ -46,6 +46,7 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		contentPanel.setLayout(null);
 		{
 			btnRegistrar = new JButton("");
+			btnRegistrar.addActionListener(this);
 			btnRegistrar.setIcon(new ImageIcon(MenuRecepcionista.class.getResource("/imagenes/registrar.png")));
 			btnRegistrar.setBounds(95, 68, 151, 128);
 			contentPanel.add(btnRegistrar);
@@ -93,6 +94,9 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnRegistrar) {
+			do_btnRegistrar_actionPerformed(e);
+		}
 		if (e.getSource() == cancelButton) {
 			do_cancelButton_actionPerformed(e);
 		}
@@ -101,5 +105,8 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		Login lg = new Login(getName());
 		lg.setVisible(true);
 		this.setVisible(false);
+	}
+	protected void do_btnRegistrar_actionPerformed(ActionEvent e) {
+		
 	}
 }
