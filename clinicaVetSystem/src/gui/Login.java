@@ -126,16 +126,22 @@ public class Login extends JFrame implements ActionListener {
 
 	        switch (tipo) {
 	            case "veterinario":
-	                JOptionPane.showMessageDialog(this, "Bienvenido Veterinario");
-	                // new VentanaVeterinario().setVisible(true);
+	                JOptionPane.showMessageDialog(this, "Bienvenido Veterinario"); 
+	                MenuVeterinario mv = new MenuVeterinario();
+	                mv.setVisible(true);
+	                this.dispose();
 	                break;
 	            case "recepcionista":
 	                JOptionPane.showMessageDialog(this, "Bienvenido Recepcionista");
-	                // new VentanaRecepcionista().setVisible(true);
+	                MenuRecepcionista mr = new MenuRecepcionista();
+	                mr.setVisible(true);
+	                this.dispose();
 	                break;
 	            case "jefe":
 	                JOptionPane.showMessageDialog(this, "Bienvenido Jefe");
-	                // new VentanaJefe().setVisible(true);
+	                MenuJefe mj = new MenuJefe();
+	                mj.setVisible(true);
+	                this.dispose();
 	                break;
 	            default:
 	                JOptionPane.showMessageDialog(this, "Rol no reconocido");
