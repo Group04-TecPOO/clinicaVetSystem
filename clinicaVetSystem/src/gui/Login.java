@@ -8,7 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.multi.MultiPopupMenuUI;
 
-import clases.Recepcionista;
+import ArrayClases.ArrayLogin;
+import clases.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,8 +28,9 @@ public class Login extends JFrame implements ActionListener {
 	private JLabel lblNewLabel;
 	private JLabel lblContrasea;
 	private JTextField txtUsuario;
-	private JTextField txtContraseña;
+	private JTextField txtContra;
 	private JButton btnIngresar;
+	private String tipo;
 
 	/**
 	 * Launch the application.
@@ -37,7 +39,7 @@ public class Login extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					Login frame = new Login("");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,8 @@ public class Login extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public Login(String tipo) {
+		this.tipo= tipo;
 		setTitle("LOGIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 494, 365);
@@ -77,10 +80,10 @@ public class Login extends JFrame implements ActionListener {
 			txtUsuario.setColumns(10);
 		}
 		{
-			txtContraseña = new JTextField();
-			txtContraseña.setColumns(10);
-			txtContraseña.setBounds(194, 119, 160, 33);
-			contentPane.add(txtContraseña);
+			txtContra = new JTextField();
+			txtContra.setColumns(10);
+			txtContra.setBounds(194, 119, 160, 33);
+			contentPane.add(txtContra);
 		}
 		{
 			btnIngresar = new JButton("INGRESAR");
@@ -96,11 +99,51 @@ public class Login extends JFrame implements ActionListener {
 			do_btnIngresar_actionPerformed(e);
 		}
 	}
+	
 	protected void do_btnIngresar_actionPerformed(ActionEvent e) {
 		
-		Object tipo;
-		if(tipo.equals("Veterinario")) {
+		/*if(tipo.equals("Veterinario")) {
+			String usuario= txtUsuario.getText().trim();
+			String contra= txtContra.getText().trim();
 			
+			Usuario u= ArrayLogin.VerificarCredenciales(usuario, contra);
+			if(u != null) {
+				JOptionPane.showMessageDialog(this, "Bienvenido Veterinario");
+			}
+			
+		}else {
+			JOptionPane.showMessageDialog(this, "No existes");
+
 		}
+		*/
+		String usuario = txtUsuario.getText().trim();
+	    String contra = txtContra.getText().trim();
+
+	    Usuario u = ArrayLogin.VerificarCredenciales(usuario, contra);
+
+	    if (u != null) {
+	        String tipo = u.getTipo().toLowerCase(); // para comparar sin errores de mayúsculas
+
+	        switch (tipo) {
+	            case "veterinario":
+	                JOptionPane.showMessageDialog(this, "Bienvenido Veterinario");
+	                // new VentanaVeterinario().setVisible(true);
+	                break;
+	            case "recepcionista":
+	                JOptionPane.showMessageDialog(this, "Bienvenido Recepcionista");
+	                // new VentanaRecepcionista().setVisible(true);
+	                break;
+	            case "jefe":
+	                JOptionPane.showMessageDialog(this, "Bienvenido Jefe");
+	                // new VentanaJefe().setVisible(true);
+	                break;
+	            default:
+	                JOptionPane.showMessageDialog(this, "Rol no reconocido");
+	        }
+
+	    } else {
+	        JOptionPane.showMessageDialog(this, "No existes");
+	    }
+		
 	}
 }
