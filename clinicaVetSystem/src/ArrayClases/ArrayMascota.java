@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import clases.Cliente;
 import clases.Mascota;
 import connection.ConexionMysql;
-
+/*
 public class ArrayMascota {
 	public ArrayList<Mascota> ListarMascota(){
 		ArrayList<Mascota> lista = new ArrayList<Mascota>();
@@ -55,5 +55,6 @@ public class ArrayMascota {
 		return lista;
 	}
 }
+*/
 
 

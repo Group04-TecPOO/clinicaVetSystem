@@ -11,7 +11,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import ArrayClases.ArrayCliente;
-import ArrayClases.ArrayMascota;
+/*import ArrayClases.ArrayMascota;*/
 import clases.Cliente;
 import clases.Mascota;
 
@@ -27,8 +27,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class RegistrarPacientes extends JDialog implements ActionListener {
+public class RegistrarPacientes extends JDialog implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -41,8 +43,6 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 	private JTextField txtDireCli;
 	private JLabel lblTelefono;
 	private JTextField txtTelCli;
-	private JTextField textField_4;
-	private JLabel lblIdCliente;
 	private JPanel panel_1;
 	private JLabel lblNewLabel_1;
 	private JTextField txtNombreMascota;
@@ -66,6 +66,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 	private JTable tablaPropietario;
 	private JScrollPane scrollPane_1;
 	private JTable tablaMascota;
+	private JButton cancelButton;
 
 	/**
 	 * Launch the application.
@@ -97,59 +98,53 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 			contentPanel.add(panel);
 			{
 				lblNewLabel = new JLabel("Nombre Completo");
-				lblNewLabel.setBounds(10, 63, 94, 14);
+				lblNewLabel.setBounds(10, 11, 94, 14);
 				panel.add(lblNewLabel);
 			}
 			{
 				txtNomCli = new JTextField();
 				txtNomCli.setColumns(10);
-				txtNomCli.setBounds(20, 88, 248, 20);
+				txtNomCli.setBounds(20, 36, 248, 20);
 				panel.add(txtNomCli);
 			}
 			{
 				lblDni = new JLabel("DNI");
-				lblDni.setBounds(10, 119, 94, 14);
+				lblDni.setBounds(10, 67, 94, 14);
 				panel.add(lblDni);
 			}
 			{
 				txtDniCli = new JTextField();
 				txtDniCli.setColumns(10);
-				txtDniCli.setBounds(20, 137, 248, 20);
+				txtDniCli.setBounds(20, 85, 248, 20);
 				panel.add(txtDniCli);
 			}
 			{
 				lblDireccion = new JLabel("Direccion");
-				lblDireccion.setBounds(10, 168, 94, 14);
+				lblDireccion.setBounds(10, 116, 94, 14);
 				panel.add(lblDireccion);
 			}
 			{
 				txtDireCli = new JTextField();
 				txtDireCli.setColumns(10);
-				txtDireCli.setBounds(20, 190, 248, 20);
+				txtDireCli.setBounds(20, 138, 248, 20);
 				panel.add(txtDireCli);
 			}
 			{
 				lblTelefono = new JLabel("Telefono");
-				lblTelefono.setBounds(10, 217, 94, 14);
+				lblTelefono.setBounds(10, 165, 94, 14);
 				panel.add(lblTelefono);
 			}
 			{
 				txtTelCli = new JTextField();
 				txtTelCli.setColumns(10);
-				txtTelCli.setBounds(20, 242, 248, 20);
+				txtTelCli.setBounds(20, 190, 248, 20);
 				panel.add(txtTelCli);
 			}
 			{
-				textField_4 = new JTextField();
-				textField_4.setEnabled(false);
-				textField_4.setColumns(10);
-				textField_4.setBounds(20, 36, 248, 20);
-				panel.add(textField_4);
-			}
-			{
-				lblIdCliente = new JLabel("ID Cliente");
-				lblIdCliente.setBounds(10, 11, 94, 14);
-				panel.add(lblIdCliente);
+				btnRegistrar = new JButton("Registrar");
+				btnRegistrar.setBounds(102, 239, 89, 23);
+				panel.add(btnRegistrar);
+				btnRegistrar.addActionListener(this);
 			}
 		}
 		{
@@ -255,13 +250,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 			contentPanel.add(btnRegistrarMascota);
 		}
 		{
-			btnRegistrar = new JButton("Registrar");
-			btnRegistrar.addActionListener(this);
-			btnRegistrar.setBounds(352, 250, 89, 23);
-			contentPanel.add(btnRegistrar);
-		}
-		{
 			scrollPane = new JScrollPane();
+			scrollPane.addMouseListener(this);
 			scrollPane.setBounds(10, 273, 375, 309);
 			contentPanel.add(scrollPane);
 			{
@@ -283,13 +273,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Volver al Menu");
+				cancelButton.addActionListener(this);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -307,7 +292,6 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 		
 		modelo.setRowCount(lista.size());
 		Iterator<Cliente> it = lista.iterator();
-		modelo.addColumn("ID");
 		modelo.addColumn("Nombre");
 		modelo.addColumn("DNI");
 		modelo.addColumn("Direccion");
@@ -317,17 +301,16 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 		while (it.hasNext()) {
 			Object obj = it.next();
 			Cliente cl = (Cliente)obj;
-			modelo.setValueAt(cl.getIdCliente(), i, 0);
+			modelo.setValueAt(cl.getDniCliente(), i, 0);
 			modelo.setValueAt(cl.getNombreCompleto(), i, 1);
-			modelo.setValueAt(cl.getDniCliente(), i, 2);
-			modelo.setValueAt(cl.getDireccion(), i, 3);
-			modelo.setValueAt(cl.getTelefono(), i, 4);
+			modelo.setValueAt(cl.getDireccion(), i, 2);
+			modelo.setValueAt(cl.getTelefono(), i, 3);
 			i++;
 		}
 		tablaPropietario.setModel(modelo);
 	}
 	public void ListarMascota(int IdMascota) {
-		DefaultTableModel modelo = new DefaultTableModel();
+		/*DefaultTableModel modelo = new DefaultTableModel();
 		ArrayMascota am = new ArrayMascota();
 		ArrayList<Mascota> lista = new ArrayList<Mascota>();
 		if(IdMascota == 0) lista = am.ListarMascota();
@@ -359,8 +342,12 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 			i++;
 		}
 		tablaMascota.setModel(modelo);
+		*/
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == cancelButton) {
+			do_cancelButton_actionPerformed(e);
+		}
 		if (e.getSource() == btnRegistrarMascota) {
 			do_btnRegistrarMascota_actionPerformed(e);
 		}
@@ -370,7 +357,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 	}
 	protected void do_btnRegistrar_actionPerformed(ActionEvent e) {
 		try {
-			Cliente cl = new Cliente(0, txtNomCli.getText(),txtDniCli.getText(), txtDireCli.getText(), txtTelCli.getText());
+			Cliente cl = new Cliente(txtDniCli.getText(), txtNomCli.getText(), txtDireCli.getText(), txtTelCli.getText());
 			ArrayCliente ac = new ArrayCliente();
 			ac.Insertar(cl);
 			Listar("");
@@ -396,6 +383,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 	}
 	
 	protected void do_btnRegistrarMascota_actionPerformed(ActionEvent e) {
+		/*
 		try {
 			Mascota mas = new Mascota(0, txtNombreMascota.getText(),Integer.parseInt(txtEdadMascota.getText()),Double.parseDouble(txtPesoMascota.getText()),txtRazaMascota.getText(),txtEspecieMascota.getText(),txtSexoMascota.getText(),txtEsteMascota.getText());
 			ArrayMascota am = new ArrayMascota();
@@ -405,6 +393,32 @@ public class RegistrarPacientes extends JDialog implements ActionListener {
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, "Datos incompletos");
 		}	
+		*/
 	}
 	
+	protected void do_cancelButton_actionPerformed(ActionEvent e) {
+		MenuRecepcionista mr = new MenuRecepcionista();
+		mr.setVisible(true);
+		this.dispose();
+	}
+	public void mouseClicked(MouseEvent e) {
+		if (e.getSource() == scrollPane) {
+			do_scrollPane_mouseClicked(e);
+		}
+	}
+	public void mouseEntered(MouseEvent e) {
+	}
+	public void mouseExited(MouseEvent e) {
+	}
+	public void mousePressed(MouseEvent e) {
+	}
+	public void mouseReleased(MouseEvent e) {
+	}
+	protected void do_scrollPane_mouseClicked(MouseEvent e) {
+		int fila = tablaPropietario.getSelectedRow();
+		txtDniCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 0)));
+		txtNomCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 1)));
+		txtDireCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 2)));
+		txtTelCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 3)));
+	}
 }

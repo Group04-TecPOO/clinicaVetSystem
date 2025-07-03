@@ -11,7 +11,7 @@ public class ConexionMysql {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.print("Driver Correcto");
-			cnx= DriverManager.getConnection("jdbc:mysql://localhost:3306/VeterinariaFinal", "root", "1234");
+			cnx= DriverManager.getConnection("jdbc:mysql://localhost:3306/VetSystem", "root", "1234");
 			System.out.println("\nConexión establecida");
 		} catch (Exception e) {
 			System.out.println("Error: "+ e);

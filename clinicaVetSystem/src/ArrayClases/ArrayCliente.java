@@ -17,7 +17,7 @@ public class ArrayCliente {
 			ResultSet rs = csta.executeQuery();
 			Cliente cl;
 			while (rs.next()) {
-				cl = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				cl = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
 				lista.add(cl);
 			}
 		} catch (Exception e) {}
@@ -32,7 +32,7 @@ public class ArrayCliente {
 			ResultSet rs = csta.executeQuery();
 			Cliente cl;
 			while (rs.next()) {
-				cl = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				cl = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
 				lista.add(cl);
 			}
 		} catch (Exception e) {}
@@ -46,7 +46,7 @@ public class ArrayCliente {
 			ResultSet rs = sta.executeQuery("Select * from Cliente where NomCompletoCliente like '%" + nom + "%'");
 			Cliente cl;
 			while (rs.next()) {
-				cl = new Cliente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+				cl = new Cliente(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
 				lista.add(cl);
 			}
 		} catch (Exception e) {}

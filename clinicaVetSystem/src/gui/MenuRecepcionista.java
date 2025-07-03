@@ -107,6 +107,9 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		this.setVisible(false);
 	}
 	protected void do_btnRegistrar_actionPerformed(ActionEvent e) {
-		
+		RegistrarPacientes rp = new RegistrarPacientes();
+		rp.setVisible(true);
+		this.dispose();
+				
 	}
 }

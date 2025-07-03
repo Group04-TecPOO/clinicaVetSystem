@@ -1,36 +1,30 @@
 package clases;
 
 public class Cliente {
-	private int IdCliente;
-	private String nombreCompleto;
+	
 	private String DniCliente;
+	private String nombreCompleto;
 	private String Direccion;
 	private String Telefono;
-	public Cliente(int idCliente, String nombreCompleto, String dniCliente, String direccion, String telefono) {
-		super();
-		IdCliente = idCliente;
-		this.nombreCompleto = nombreCompleto;
+	
+	public Cliente(String dniCliente, String nombreCompleto, String direccion, String telefono) {
 		DniCliente = dniCliente;
+		this.nombreCompleto = nombreCompleto;
 		Direccion = direccion;
 		Telefono = telefono;
 	}
-	public int getIdCliente() {
-		return IdCliente;
+	
+	public String getDniCliente() {
+		return DniCliente;
 	}
-	public void setIdCliente(int idCliente) {
-		IdCliente = idCliente;
+	public void setDniCliente(String dniCliente) {
+		DniCliente = dniCliente;
 	}
 	public String getNombreCompleto() {
 		return nombreCompleto;
 	}
 	public void setNombreCompleto(String nombreCompleto) {
 		this.nombreCompleto = nombreCompleto;
-	}
-	public String getDniCliente() {
-		return DniCliente;
-	}
-	public void setDniCliente(String dniCliente) {
-		DniCliente = dniCliente;
 	}
 	public String getDireccion() {
 		return Direccion;
@@ -44,10 +38,4 @@ public class Cliente {
 	public void setTelefono(String telefono) {
 		Telefono = telefono;
 	}
-	
-	
-
-	
-	
-	
 }
