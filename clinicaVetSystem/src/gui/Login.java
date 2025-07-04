@@ -32,6 +32,7 @@ public class Login extends JFrame implements ActionListener {
 	private JButton btnIngresar;
 	private String tipo;
 	private JPasswordField txtContra;
+	private int intentosLogin=0;
 
 	/**
 	 * Launch the application.
@@ -103,7 +104,9 @@ public class Login extends JFrame implements ActionListener {
 	protected void do_btnIngresar_actionPerformed(ActionEvent e) {		
 		String usuario = txtUsuario.getText().trim();
 	    String contra = txtContra.getText().trim();
-
+	    
+	    
+	
 	    Usuario u = ArrayLogin.VerificarCredenciales(usuario, contra);
 
 	    if (u != null) {
@@ -133,7 +136,20 @@ public class Login extends JFrame implements ActionListener {
 	        }
 
 	    } else {
-	        JOptionPane.showMessageDialog(this, "No existes");
+	    	intentosLogin++;
+	        JOptionPane.showMessageDialog(this, "No existes. Intento " + intentosLogin + " de 3", "Error", JOptionPane.ERROR_MESSAGE);
+	        
+	    }
+	    
+	    //maximum attempts check--------------------------------------------------------------
+	    if(intentosLogin >= 3) {
+	    	JOptionPane.showMessageDialog(this, "Superó el número máximo de 3 intentos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+	    	
+	    	 txtUsuario.setEnabled(false);
+	    	 txtContra.setEnabled(false);
+	    	 btnIngresar.setEnabled(false);
+	    	 intentosLogin++;
+	    	 this.dispose();
 	    }
 		
 	}
