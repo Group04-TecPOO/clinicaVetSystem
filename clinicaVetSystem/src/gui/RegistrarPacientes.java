@@ -98,24 +98,18 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			contentPanel.add(panel);
 			{
 				lblNewLabel = new JLabel("Nombre Completo");
-				lblNewLabel.setBounds(10, 11, 94, 14);
+				lblNewLabel.setBounds(10, 67, 94, 14);
 				panel.add(lblNewLabel);
 			}
 			{
-				txtNomCli = new JTextField();
-				txtNomCli.setColumns(10);
-				txtNomCli.setBounds(20, 36, 248, 20);
-				panel.add(txtNomCli);
-			}
-			{
 				lblDni = new JLabel("DNI");
-				lblDni.setBounds(10, 67, 94, 14);
+				lblDni.setBounds(10, 11, 94, 14);
 				panel.add(lblDni);
 			}
 			{
 				txtDniCli = new JTextField();
 				txtDniCli.setColumns(10);
-				txtDniCli.setBounds(20, 85, 248, 20);
+				txtDniCli.setBounds(20, 36, 248, 20);
 				panel.add(txtDniCli);
 			}
 			{
@@ -144,6 +138,12 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 				btnRegistrar = new JButton("Registrar");
 				btnRegistrar.setBounds(102, 239, 89, 23);
 				panel.add(btnRegistrar);
+				{
+					txtNomCli = new JTextField();
+					txtNomCli.setBounds(20, 85, 248, 20);
+					panel.add(txtNomCli);
+					txtNomCli.setColumns(10);
+				}
 				btnRegistrar.addActionListener(this);
 			}
 		}
@@ -292,8 +292,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		
 		modelo.setRowCount(lista.size());
 		Iterator<Cliente> it = lista.iterator();
-		modelo.addColumn("Nombre");
 		modelo.addColumn("DNI");
+		modelo.addColumn("Nombre");
 		modelo.addColumn("Direccion");
 		modelo.addColumn("Telefono");
 		int i = 0;
@@ -356,16 +356,32 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		}
 	}
 	protected void do_btnRegistrar_actionPerformed(ActionEvent e) {
-		try {
-			Cliente cl = new Cliente(txtDniCli.getText(), txtNomCli.getText(), txtDireCli.getText(), txtTelCli.getText());
-			ArrayCliente ac = new ArrayCliente();
-			ac.Insertar(cl);
-			Listar("");
-			Limpiar();
-		} catch (Exception e2) {
-			JOptionPane.showMessageDialog(null, "Datos incompletos");
+		if (!txtDniCli.getText().trim().isEmpty()) {
+		    try {
+		        String dni = txtDniCli.getText().trim();
+		        ArrayCliente ac = new ArrayCliente();
+		        ArrayList<Cliente> existente = ac.consultarCliente(dni); // Método que consulta si ya existe
+
+		        if (existente == null) {
+		            // No existe, se puede registrar
+		            Cliente cl = new Cliente(dni, txtNomCli.getText(), txtDireCli.getText(), txtTelCli.getText());
+		            ac.Insertar(cl);
+		            Listar("");
+		            Limpiar();
+		            JOptionPane.showMessageDialog(null, "Cliente registrado exitosamente");
+		        } else {
+		            // Ya existe
+		            JOptionPane.showMessageDialog(null, "El cliente con DNI " + dni + " ya existe");
+		        }
+		    } catch (Exception e2) {
+		        JOptionPane.showMessageDialog(null, "Error al registrar cliente: " + e2.getMessage());
+		    }
+		} else {
+		    JOptionPane.showMessageDialog(null, "El campo DNI no puede estar vacío");
+		}
+
 	}
-	}
+	
 	void Limpiar() {
 		txtNomCli.setText("");
 		txtDniCli.setText("");

@@ -20,6 +20,7 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 	private JButton btnRegistrar;
 	private JLabel lblNewLabel;
 	private JButton cancelButton;
+	private JButton btnAgendarCita;
 
 	/**
 	 * Launch the application.
@@ -52,7 +53,8 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 			contentPanel.add(btnRegistrar);
 		}
 		{
-			JButton btnAgendarCita = new JButton("");
+			btnAgendarCita = new JButton("");
+			btnAgendarCita.addActionListener(this);
 			btnAgendarCita.setIcon(new ImageIcon(MenuRecepcionista.class.getResource("/imagenes/calendario.png")));
 			btnAgendarCita.setBounds(392, 68, 151, 128);
 			contentPanel.add(btnAgendarCita);
@@ -94,6 +96,9 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnAgendarCita) {
+			do_btnAgendarCita_actionPerformed(e);
+		}
 		if (e.getSource() == btnRegistrar) {
 			do_btnRegistrar_actionPerformed(e);
 		}
@@ -111,5 +116,10 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		rp.setVisible(true);
 		this.dispose();
 				
+	}
+	protected void do_btnAgendarCita_actionPerformed(ActionEvent e) {
+		AgendarCita ac = new AgendarCita();
+		ac.setVisible(true);
+		this.dispose();
 	}
 }

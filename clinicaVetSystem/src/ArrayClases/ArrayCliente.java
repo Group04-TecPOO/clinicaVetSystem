@@ -57,8 +57,8 @@ public class ArrayCliente {
 		try {
 			Connection cnx = ConexionMysql.getConexion();
 			CallableStatement csta = cnx.prepareCall("{call cl_Insertar(?,?,?,?)}");
-			csta.setString(1, cl.getNombreCompleto());
-			csta.setString(2, cl.getDniCliente());
+			csta.setString(1, cl.getDniCliente());
+			csta.setString(2, cl.getNombreCompleto());
 			csta.setString(3, cl.getDireccion());
 			csta.setString(4, cl.getTelefono());
 			csta.executeUpdate();
