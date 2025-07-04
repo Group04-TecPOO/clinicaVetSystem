@@ -21,6 +21,7 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 	private JLabel lblNewLabel;
 	private JButton cancelButton;
 	private JButton btnAgendarCita;
+	private JButton btnFactura;
 
 	/**
 	 * Launch the application.
@@ -60,7 +61,8 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 			contentPanel.add(btnAgendarCita);
 		}
 		{
-			JButton btnFactura = new JButton("");
+			btnFactura = new JButton("");
+			btnFactura.addActionListener(this);
 			btnFactura.setIcon(new ImageIcon(MenuRecepcionista.class.getResource("/imagenes/facturacion (1).png")));
 			btnFactura.setBounds(249, 271, 151, 128);
 			contentPanel.add(btnFactura);
@@ -96,6 +98,9 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 		}
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnFactura) {
+			do_btnFactura_actionPerformed(e);
+		}
 		if (e.getSource() == btnAgendarCita) {
 			do_btnAgendarCita_actionPerformed(e);
 		}
@@ -120,6 +125,11 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 	protected void do_btnAgendarCita_actionPerformed(ActionEvent e) {
 		AgendarCita ac = new AgendarCita();
 		ac.setVisible(true);
+		this.dispose();
+	}
+	protected void do_btnFactura_actionPerformed(ActionEvent e) {
+		Factura f = new Factura();
+		f.setVisible(true);
 		this.dispose();
 	}
 }

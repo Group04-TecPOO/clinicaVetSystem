@@ -33,7 +33,7 @@ public class MenuVeterinario extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public MenuVeterinario() {
-		setBounds(100, 100, 609, 486);
+		setBounds(100, 100, 848, 627);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);

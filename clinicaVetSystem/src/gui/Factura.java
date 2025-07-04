@@ -33,7 +33,7 @@ public class Factura extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public Factura() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 813, 612);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

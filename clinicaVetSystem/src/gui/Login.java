@@ -20,6 +20,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame implements ActionListener {
 
@@ -28,9 +29,9 @@ public class Login extends JFrame implements ActionListener {
 	private JLabel lblNewLabel;
 	private JLabel lblContrasea;
 	private JTextField txtUsuario;
-	private JTextField txtContra;
 	private JButton btnIngresar;
 	private String tipo;
+	private JPasswordField txtContra;
 
 	/**
 	 * Launch the application.
@@ -75,15 +76,9 @@ public class Login extends JFrame implements ActionListener {
 		}
 		{
 			txtUsuario = new JTextField();
-			txtUsuario.setBounds(194, 59, 160, 33);
+			txtUsuario.setBounds(194, 71, 160, 33);
 			contentPane.add(txtUsuario);
 			txtUsuario.setColumns(10);
-		}
-		{
-			txtContra = new JTextField();
-			txtContra.setColumns(10);
-			txtContra.setBounds(194, 119, 160, 33);
-			contentPane.add(txtContra);
 		}
 		{
 			btnIngresar = new JButton("INGRESAR");
@@ -91,6 +86,11 @@ public class Login extends JFrame implements ActionListener {
 			btnIngresar.setBackground(new Color(204, 153, 255));
 			btnIngresar.setBounds(126, 231, 203, 46);
 			contentPane.add(btnIngresar);
+		}
+		{
+			txtContra = new JPasswordField();
+			txtContra.setBounds(194, 122, 160, 33);
+			contentPane.add(txtContra);
 		}
 
 	}
@@ -100,29 +100,14 @@ public class Login extends JFrame implements ActionListener {
 		}
 	}
 	
-	protected void do_btnIngresar_actionPerformed(ActionEvent e) {
-		
-		/*if(tipo.equals("Veterinario")) {
-			String usuario= txtUsuario.getText().trim();
-			String contra= txtContra.getText().trim();
-			
-			Usuario u= ArrayLogin.VerificarCredenciales(usuario, contra);
-			if(u != null) {
-				JOptionPane.showMessageDialog(this, "Bienvenido Veterinario");
-			}
-			
-		}else {
-			JOptionPane.showMessageDialog(this, "No existes");
-
-		}
-		*/
+	protected void do_btnIngresar_actionPerformed(ActionEvent e) {		
 		String usuario = txtUsuario.getText().trim();
 	    String contra = txtContra.getText().trim();
 
 	    Usuario u = ArrayLogin.VerificarCredenciales(usuario, contra);
 
 	    if (u != null) {
-	        String tipo = u.getTipo().toLowerCase(); // para comparar sin errores de mayúsculas
+	        String tipo = u.getTipo().toLowerCase(); 
 
 	        switch (tipo) {
 	            case "veterinario":

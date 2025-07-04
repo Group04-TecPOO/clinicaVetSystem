@@ -11,6 +11,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import ArrayClases.ArrayCliente;
+import ArrayClases.ArrayMascota;
 /*import ArrayClases.ArrayMascota;*/
 import clases.Cliente;
 import clases.Mascota;
@@ -29,6 +30,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class RegistrarPacientes extends JDialog implements ActionListener, MouseListener {
 
@@ -51,13 +54,11 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	private JLabel lblDireccion_1;
 	private JTextField txtEspecieMascota;
 	private JLabel lblTelefono_1;
-	private JTextField txtSexoMascota;
 	private JTextField txtIDMascota;
 	private JLabel lblIdCliente_1;
 	private JLabel lblDni_2;
 	private JTextField txtPesoMascota;
 	private JLabel lblTelefono_2;
-	private JTextField txtEsteMascota;
 	private JTextField txtRazaMascota;
 	private JLabel lblDni_3;
 	private JButton btnRegistrarMascota;
@@ -67,6 +68,9 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	private JScrollPane scrollPane_1;
 	private JTable tablaMascota;
 	private JButton cancelButton;
+	private JButton btnLimpiarCampos;
+	private JComboBox cboEsterilizado;
+	private JComboBox cboSexo;
 
 	/**
 	 * Launch the application.
@@ -85,7 +89,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	 * Create the dialog.
 	 */
 	public RegistrarPacientes() {
-		setBounds(100, 100, 1038, 676);
+		setBounds(100, 100, 1077, 787);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -94,7 +98,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			panel = new JPanel();
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Propietario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(0, 0, 342, 273);
+			panel.setBounds(10, 11, 375, 273);
 			contentPanel.add(panel);
 			{
 				lblNewLabel = new JLabel("Nombre Completo");
@@ -136,13 +140,19 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			}
 			{
 				btnRegistrar = new JButton("Registrar");
-				btnRegistrar.setBounds(102, 239, 89, 23);
+				btnRegistrar.setBounds(20, 239, 89, 23);
 				panel.add(btnRegistrar);
 				{
 					txtNomCli = new JTextField();
 					txtNomCli.setBounds(20, 85, 248, 20);
 					panel.add(txtNomCli);
 					txtNomCli.setColumns(10);
+				}
+				{
+					btnLimpiarCampos = new JButton("Limpiar Campos");
+					btnLimpiarCampos.addActionListener(this);
+					btnLimpiarCampos.setBounds(119, 239, 149, 23);
+					panel.add(btnLimpiarCampos);
 				}
 				btnRegistrar.addActionListener(this);
 			}
@@ -151,11 +161,11 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			panel_1 = new JPanel();
 			panel_1.setLayout(null);
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mascota", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel_1.setBounds(451, 0, 311, 273);
+			panel_1.setBounds(427, 11, 493, 273);
 			contentPanel.add(panel_1);
 			{
 				lblNewLabel_1 = new JLabel("Nombre Mascota");
-				lblNewLabel_1.setBounds(10, 63, 94, 14);
+				lblNewLabel_1.setBounds(10, 63, 159, 14);
 				panel_1.add(lblNewLabel_1);
 			}
 			{
@@ -188,14 +198,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			}
 			{
 				lblTelefono_1 = new JLabel("Sexo");
-				lblTelefono_1.setBounds(10, 217, 69, 14);
+				lblTelefono_1.setBounds(196, 32, 69, 14);
 				panel_1.add(lblTelefono_1);
-			}
-			{
-				txtSexoMascota = new JTextField();
-				txtSexoMascota.setColumns(10);
-				txtSexoMascota.setBounds(10, 242, 69, 20);
-				panel_1.add(txtSexoMascota);
 			}
 			{
 				txtIDMascota = new JTextField();
@@ -222,19 +226,13 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			}
 			{
 				lblTelefono_2 = new JLabel("Esterilización");
-				lblTelefono_2.setBounds(89, 217, 94, 14);
+				lblTelefono_2.setBounds(275, 32, 94, 14);
 				panel_1.add(lblTelefono_2);
-			}
-			{
-				txtEsteMascota = new JTextField();
-				txtEsteMascota.setColumns(10);
-				txtEsteMascota.setBounds(89, 242, 69, 20);
-				panel_1.add(txtEsteMascota);
 			}
 			{
 				txtRazaMascota = new JTextField();
 				txtRazaMascota.setColumns(10);
-				txtRazaMascota.setBounds(128, 137, 51, 20);
+				txtRazaMascota.setBounds(128, 137, 41, 20);
 				panel_1.add(txtRazaMascota);
 			}
 			{
@@ -242,17 +240,29 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 				lblDni_3.setBounds(128, 119, 59, 14);
 				panel_1.add(lblDni_3);
 			}
-		}
-		{
-			btnRegistrarMascota = new JButton("Registrar Mascota");
-			btnRegistrarMascota.addActionListener(this);
-			btnRegistrarMascota.setBounds(789, 250, 154, 23);
-			contentPanel.add(btnRegistrarMascota);
+			{
+				cboEsterilizado = new JComboBox();
+				cboEsterilizado.setModel(new DefaultComboBoxModel(new String[] {"No ", "Si"}));
+				cboEsterilizado.setBounds(275, 56, 59, 21);
+				panel_1.add(cboEsterilizado);
+			}
+			{
+				cboSexo = new JComboBox();
+				cboSexo.setModel(new DefaultComboBoxModel(new String[] {"", "Macho", "Hembra"}));
+				cboSexo.setBounds(196, 55, 51, 22);
+				panel_1.add(cboSexo);
+			}
+			{
+				btnRegistrarMascota = new JButton("Registrar Mascota");
+				btnRegistrarMascota.setBounds(10, 239, 151, 23);
+				panel_1.add(btnRegistrarMascota);
+				btnRegistrarMascota.addActionListener(this);
+			}
 		}
 		{
 			scrollPane = new JScrollPane();
 			scrollPane.addMouseListener(this);
-			scrollPane.setBounds(10, 273, 375, 309);
+			scrollPane.setBounds(10, 295, 375, 309);
 			contentPanel.add(scrollPane);
 			{
 				tablaPropietario = new JTable();
@@ -261,7 +271,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		}
 		{
 			scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(450, 271, 493, 311);
+			scrollPane_1.setBounds(427, 295, 493, 309);
 			contentPanel.add(scrollPane_1);
 			{
 				tablaMascota = new JTable();
@@ -281,7 +291,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			
 		}
 		Listar("");
-		ListarMascota(0);
+		ListarMascota("");
 	}
 	public void Listar(String dni) {
 		DefaultTableModel modelo = new DefaultTableModel();
@@ -309,42 +319,49 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		}
 		tablaPropietario.setModel(modelo);
 	}
-	public void ListarMascota(int IdMascota) {
-		/*DefaultTableModel modelo = new DefaultTableModel();
-		ArrayMascota am = new ArrayMascota();
-		ArrayList<Mascota> lista = new ArrayList<Mascota>();
-		if(IdMascota == 0) lista = am.ListarMascota();
-		else lista = am.consultarID(IdMascota);
-		
-		modelo.setRowCount(lista.size());
-		Iterator<Mascota> it = lista.iterator();
-		modelo.addColumn("ID");
-		modelo.addColumn("Nombre");
-		modelo.addColumn("Edad");
-		modelo.addColumn("Peso");
-		modelo.addColumn("Raza");
-		modelo.addColumn("Especie");
-		modelo.addColumn("Sexo");
-		modelo.addColumn("Esterilizacion");
-		int i = 0;
-		
-		while (it.hasNext()) {
-			Object obj = it.next();
-			Mascota mas = (Mascota)obj;
-			modelo.setValueAt(mas.getIdMascota(), i, 0);
-			modelo.setValueAt(mas.getNomMascota(), i, 1);
-			modelo.setValueAt(mas.getEdad(), i, 2);
-			modelo.setValueAt(mas.getPeso(), i, 3);
-			modelo.setValueAt(mas.getRaza(), i, 4);
-			modelo.setValueAt(mas.getEspecie(), i, 5);
-			modelo.setValueAt(mas.getSexo(), i, 6);
-			modelo.setValueAt(mas.getEsterilizacion(), i, 7);
-			i++;
-		}
-		tablaMascota.setModel(modelo);
-		*/
+	public void ListarMascota(String dni) {
+	    DefaultTableModel modelo = new DefaultTableModel();
+	    ArrayMascota am = new ArrayMascota();
+	    ArrayList<Mascota> lista = new ArrayList<>();
+	    if (dni.length() == 0) {
+	        lista = am.listarMascotas();
+	    } else {
+	        lista = am.consultarID(dni);
+	    }
+
+	    modelo.addColumn("ID");
+	    modelo.addColumn("Nombre");
+	    modelo.addColumn("Edad");
+	    modelo.addColumn("Peso");
+	    modelo.addColumn("Raza");
+	    modelo.addColumn("Especie");
+	    modelo.addColumn("Sexo");
+	    modelo.addColumn("Esterilización");
+
+	    modelo.setRowCount(lista.size());
+	    Iterator<Mascota> it = lista.iterator();
+	    int i = 0;
+
+	    while (it.hasNext()) {
+	        Mascota mas = it.next();
+	        modelo.setValueAt(mas.getIdMascota(), i, 0);
+	        modelo.setValueAt(mas.getNomMascota(), i, 1);
+	        modelo.setValueAt(mas.getEdad(), i, 2);
+	        modelo.setValueAt(mas.getPeso(), i, 3);
+	        modelo.setValueAt(mas.getRaza(), i, 4);
+	        modelo.setValueAt(mas.getEspecie(), i, 5);
+	        modelo.setValueAt(mas.getSexo(), i, 6);
+	        modelo.setValueAt(mas.isEsterilizado() ? "Sí" : "No", i, 7);
+	        i++;
+	    }
+
+	    tablaMascota.setModel(modelo);
 	}
+
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnLimpiarCampos) {
+			do_btnLimpiarCampos_actionPerformed(e);
+		}
 		if (e.getSource() == cancelButton) {
 			do_cancelButton_actionPerformed(e);
 		}
@@ -360,17 +377,15 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		    try {
 		        String dni = txtDniCli.getText().trim();
 		        ArrayCliente ac = new ArrayCliente();
-		        ArrayList<Cliente> existente = ac.consultarCliente(dni); // Método que consulta si ya existe
+		        ArrayList<Cliente> existente = ac.consultarCliente(dni);
 
-		        if (existente == null) {
-		            // No existe, se puede registrar
+		        if (existente.isEmpty()) {
 		            Cliente cl = new Cliente(dni, txtNomCli.getText(), txtDireCli.getText(), txtTelCli.getText());
 		            ac.Insertar(cl);
 		            Listar("");
 		            Limpiar();
 		            JOptionPane.showMessageDialog(null, "Cliente registrado exitosamente");
 		        } else {
-		            // Ya existe
 		            JOptionPane.showMessageDialog(null, "El cliente con DNI " + dni + " ya existe");
 		        }
 		    } catch (Exception e2) {
@@ -379,7 +394,6 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		} else {
 		    JOptionPane.showMessageDialog(null, "El campo DNI no puede estar vacío");
 		}
-
 	}
 	
 	void Limpiar() {
@@ -394,22 +408,37 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		txtPesoMascota.setText("");
 		txtRazaMascota.setText("");
 		txtEspecieMascota.setText(""); 
-		txtSexoMascota.setText("");
-		txtEsteMascota.setText("");
 	}
 	
 	protected void do_btnRegistrarMascota_actionPerformed(ActionEvent e) {
-		/*
 		try {
-			Mascota mas = new Mascota(0, txtNombreMascota.getText(),Integer.parseInt(txtEdadMascota.getText()),Double.parseDouble(txtPesoMascota.getText()),txtRazaMascota.getText(),txtEspecieMascota.getText(),txtSexoMascota.getText(),txtEsteMascota.getText());
-			ArrayMascota am = new ArrayMascota();
-			am.InsertarMascota(mas);
-			ListarMascota(0);
-			LimpiarMascota();
+		    String nombre = txtNombreMascota.getText();
+		    int edad = Integer.parseInt(txtEdadMascota.getText());
+		    double peso = Double.parseDouble(txtPesoMascota.getText());
+		    String raza = txtRazaMascota.getText();
+		    String especie = txtEspecieMascota.getText();
+		    String sexo = cboSexo.getSelectedItem().toString();
+		    String dni = txtDniCli.getText();
+
+		    String est = cboEsterilizado.getSelectedItem().toString();
+		    boolean esterilizado = est.equals("Sí");
+
+		    if (nombre.isEmpty() || dni.isEmpty()) {
+		        throw new Exception("Campos obligatorios vacíos");
+		    }
+
+		    Mascota mas = new Mascota(nombre, edad, peso, raza, especie, sexo, esterilizado, dni);
+		    ArrayMascota am = new ArrayMascota();
+		    am.insertarMascota(mas);
+
+		    ListarMascota(""); 
+		    LimpiarMascota();
+
+		} catch (NumberFormatException e1) {
+		    JOptionPane.showMessageDialog(null, "Edad y peso deben ser numéricos");
 		} catch (Exception e2) {
-			JOptionPane.showMessageDialog(null, "Datos incompletos");
-		}	
-		*/
+		    JOptionPane.showMessageDialog(null, "Datos incompletos o inválidos");
+		}
 	}
 	
 	protected void do_cancelButton_actionPerformed(ActionEvent e) {
@@ -436,5 +465,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		txtNomCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 1)));
 		txtDireCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 2)));
 		txtTelCli.setText(String.valueOf(tablaPropietario.getValueAt(fila, 3)));
+	}
+	protected void do_btnLimpiarCampos_actionPerformed(ActionEvent e) {
+		Limpiar();
 	}
 }
