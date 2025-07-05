@@ -24,10 +24,17 @@ public class AgendarCita extends JDialog implements ActionListener {
 	private JLabel lblNewLabel;
 	private JComboBox cboVeterinarios;
 	private JLabel lblDnicliente;
-	private JTextField textField;
+	private JTextField txtDniCliente;
 	private JScrollPane scrollPane;
 	private JTable tblAgendar;
 	private JButton btnAgendar;
+	private JScrollPane scrollPane_1;
+	private JTable tblServicio;
+	private JLabel lblNewLabel_1;
+	private JTextField txtServicio;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JTextField txtHora;
 
 	/**
 	 * Launch the application.
@@ -54,25 +61,25 @@ public class AgendarCita extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			lblNewLabel = new JLabel("Veterinario");
-			lblNewLabel.setBounds(26, 26, 76, 14);
+			lblNewLabel = new JLabel("Veterinarios:");
+			lblNewLabel.setBounds(431, 87, 76, 14);
 			contentPanel.add(lblNewLabel);
 		}
 		{
 			cboVeterinarios = new JComboBox();
-			cboVeterinarios.setBounds(112, 22, 109, 22);
+			cboVeterinarios.setBounds(517, 83, 109, 22);
 			contentPanel.add(cboVeterinarios);
 		}
 		{
 			lblDnicliente = new JLabel("DNI-Cliente:");
-			lblDnicliente.setBounds(26, 72, 76, 14);
+			lblDnicliente.setBounds(431, 30, 76, 14);
 			contentPanel.add(lblDnicliente);
 		}
 		{
-			textField = new JTextField();
-			textField.setBounds(112, 69, 109, 20);
-			contentPanel.add(textField);
-			textField.setColumns(10);
+			txtDniCliente = new JTextField();
+			txtDniCliente.setBounds(517, 27, 109, 20);
+			contentPanel.add(txtDniCliente);
+			txtDniCliente.setColumns(10);
 		}
 		{
 			scrollPane = new JScrollPane();
@@ -88,6 +95,42 @@ public class AgendarCita extends JDialog implements ActionListener {
 			btnAgendar.setBackground(new Color(255, 192, 203));
 			btnAgendar.setBounds(709, 55, 114, 48);
 			contentPanel.add(btnAgendar);
+		}
+		{
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(10, 11, 390, 151);
+			contentPanel.add(scrollPane_1);
+			{
+				tblServicio = new JTable();
+				scrollPane_1.setViewportView(tblServicio);
+			}
+		}
+		{
+			lblNewLabel_1 = new JLabel("Servicio:");
+			lblNewLabel_1.setBounds(45, 185, 56, 22);
+			contentPanel.add(lblNewLabel_1);
+		}
+		{
+			txtServicio = new JTextField();
+			txtServicio.setBounds(111, 185, 174, 22);
+			contentPanel.add(txtServicio);
+			txtServicio.setColumns(10);
+		}
+		{
+			lblNewLabel_2 = new JLabel("Fecha:");
+			lblNewLabel_2.setBounds(345, 189, 46, 14);
+			contentPanel.add(lblNewLabel_2);
+		}
+		{
+			lblNewLabel_3 = new JLabel("Hora:");
+			lblNewLabel_3.setBounds(473, 189, 46, 14);
+			contentPanel.add(lblNewLabel_3);
+		}
+		{
+			txtHora = new JTextField();
+			txtHora.setBounds(517, 178, 109, 28);
+			contentPanel.add(txtHora);
+			txtHora.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
