@@ -22,6 +22,7 @@ public class ArrayMascota {
             csta.setBoolean(7, m.isEsterilizado());
             csta.setString(8, m.getDniCliente());
             csta.registerOutParameter(9, java.sql.Types.INTEGER); 
+            csta.executeUpdate();
         } catch (Exception e) {
             System.out.println("ERROR al insertar mascota: " + e);
         }

@@ -8,6 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
+import java.io.Serial;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -17,6 +19,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+
+import ArrayClases.ArrayServicio;
+import clases.Servicio;
+
 import javax.swing.border.EtchedBorder;
 import java.awt.SystemColor;
 
@@ -48,7 +55,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 	 */
 	public AgendarCita() {
 		setTitle("Agendar Cita");
-		setBounds(100, 100, 643, 570);
+		setBounds(100, 100, 728, 570);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -127,7 +134,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		scrollPane.setViewportView(tblCitas);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(311, 20, 301, 231);
+		scrollPane_1.setBounds(311, 20, 374, 231);
 		contentPanel.add(scrollPane_1);
 		
 		tblServi = new JTable();
@@ -155,5 +162,11 @@ public class AgendarCita extends JDialog implements ActionListener {
 		MenuRecepcionista mr = new MenuRecepcionista();
 		mr.setVisible(true);
 		this.dispose();
+	}
+	
+	public void ListarServicio() {
+		DefaultTableModel mod= new DefaultTableModel();
+		ArrayServicio as= new ArrayServicio();
+		ArrayList<Servicio> listaS= new ArrayList<Servicio>();
 	}
 }

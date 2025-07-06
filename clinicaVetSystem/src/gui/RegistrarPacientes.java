@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 import ArrayClases.ArrayCliente;
 import ArrayClases.ArrayMascota;
-/*import ArrayClases.ArrayMascota;*/
 import clases.Cliente;
 import clases.Mascota;
 
@@ -344,7 +343,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	public void ListarMascota(String dni) {
 	    DefaultTableModel modelo = new DefaultTableModel();
 	    ArrayMascota am = new ArrayMascota();
-	    ArrayList<Mascota> lista = new ArrayList<>();
+	    ArrayList<Mascota> lista = new ArrayList<Mascota>();
 	    if (dni.length() == 0) {
 	        lista = am.listarMascotas();
 	    } else {
@@ -359,6 +358,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	    modelo.addColumn("Especie");
 	    modelo.addColumn("Sexo");
 	    modelo.addColumn("Esterilización");
+	    modelo.addColumn("DNI Cliente");
 
 	    modelo.setRowCount(lista.size());
 	    Iterator<Mascota> it = lista.iterator();
@@ -374,6 +374,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	        modelo.setValueAt(mas.getEspecie(), i, 5);
 	        modelo.setValueAt(mas.getSexo(), i, 6);
 	        modelo.setValueAt(mas.isEsterilizado() ? "Sí" : "No", i, 7);
+	        modelo.setValueAt(mas.getDniCliente(), i, 8);
 	        i++;
 	    }
 
@@ -436,35 +437,34 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	}
 	
 	protected void do_btnRegistrarMascota_actionPerformed(ActionEvent e) {
-		try {
-		    String nombre = txtNombreMascota.getText();
-		    int edad = Integer.parseInt(txtEdadMascota.getText());
-		    double peso = Double.parseDouble(txtPesoMascota.getText());
-		    String raza = txtRazaMascota.getText();
-		    String especie = txtEspecieMascota.getText();
-		    String sexo = cboSexo.getSelectedItem().toString();
-		    String dni = txtDniCli.getText();
+		 try {
+		        String nombre = txtNombreMascota.getText();
+		        int edad = Integer.parseInt(txtEdadMascota.getText());
+		        double peso = Double.parseDouble(txtPesoMascota.getText());
+		        String raza = txtRazaMascota.getText();
+		        String especie = txtEspecieMascota.getText();
+		        String sexo = cboSexo.getSelectedItem().toString();
+		        String dni = txtDniCli.getText();
+		        boolean esterilizado = cboEsterilizado.getSelectedItem().toString().equals("Sí");
 
-		    String est = cboEsterilizado.getSelectedItem().toString();
-		    boolean esterilizado = est.equals("Sí");
+		        if (nombre.isEmpty() || dni.isEmpty()) {
+		            throw new Exception("Campos obligatorios vacíos");
+		        }
 
-		    if (nombre.isEmpty() || dni.isEmpty()) {
-		        throw new Exception("Campos obligatorios vacíos");
+		        Mascota mas = new Mascota(nombre, edad, peso, raza, especie, sexo, esterilizado, dni);
+		        ArrayMascota am = new ArrayMascota();
+		        am.insertarMascota(mas);
+
+		        ListarMascota(""); 
+		        LimpiarMascota();
+		        lblPerrito.setIcon(new ImageIcon(RegistrarPacientes.class.getResource("/imagenes/perrito.jpg")));
+		        JOptionPane.showMessageDialog(null, "Mascota registrada correctamente");
+
+		    } catch (NumberFormatException e1) {
+		        JOptionPane.showMessageDialog(null, "Edad y peso deben ser numéricos");
+		    } catch (Exception e2) {
+		        JOptionPane.showMessageDialog(null, "Error al registrar mascota: " + e2.getMessage());
 		    }
-
-		    Mascota mas = new Mascota(nombre, edad, peso, raza, especie, sexo, esterilizado, dni);
-		    ArrayMascota am = new ArrayMascota();
-		    am.insertarMascota(mas);
-
-		    ListarMascota(""); 
-		    LimpiarMascota();
-		    lblPerrito.setIcon(new ImageIcon(RegistrarPacientes.class.getResource("/imagenes/perrito.jpg")));
-
-		} catch (NumberFormatException e1) {
-		    JOptionPane.showMessageDialog(null, "Edad y peso deben ser numéricos");
-		} catch (Exception e2) {
-		    JOptionPane.showMessageDialog(null, "Datos incompletos o inválidos");
-		}
 	}
 	
 	protected void do_cancelButton_actionPerformed(ActionEvent e) {
