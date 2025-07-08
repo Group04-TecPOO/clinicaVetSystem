@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.io.Serial;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -151,6 +152,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 				buttonPane.add(cancelButton);
 			}
 		}
+		ListarServicio();
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -165,8 +167,27 @@ public class AgendarCita extends JDialog implements ActionListener {
 	}
 	
 	public void ListarServicio() {
-		DefaultTableModel mod= new DefaultTableModel();
-		ArrayServicio as= new ArrayServicio();
-		ArrayList<Servicio> listaS= new ArrayList<Servicio>();
+	    DefaultTableModel modelo = new DefaultTableModel();
+	    ArrayServicio as = new ArrayServicio();
+	    ArrayList<Servicio> lista = as.listarServicio();
+
+	    modelo.setRowCount(lista.size());
+	    modelo.addColumn("ID");
+	    modelo.addColumn("Nombre");
+	    modelo.addColumn("Precio");
+
+	    Iterator<Servicio> it = lista.iterator();
+	    int i = 0;
+	    while (it.hasNext()) {
+	        Servicio s = it.next();
+	        modelo.setValueAt(s.getIdServicio(), i, 0);
+	        modelo.setValueAt(s.getNombreServicio(), i, 1);
+	        modelo.setValueAt(s.getPrecioServicio(), i, 2);
+	        i++;
+	    }
+
+	    tblServi.setModel(modelo);
 	}
+	
+	
 }
