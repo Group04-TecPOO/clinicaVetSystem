@@ -14,7 +14,7 @@ public class ArrayCitas {
 	public ArrayList<Citas> listarCitas(){
 		ArrayList<Citas> lista = new ArrayList<Citas>();
 		try {
-			CallableStatement csta = ConexionMysql.getConexion().prepareCall("{call citas_Listar()}");
+			CallableStatement csta = ConexionMysql.getConexion().prepareCall("{call cita_Listar()}");
 			ResultSet rs = csta.executeQuery();
 			Citas citas;
 			while (rs.next()) {
@@ -28,7 +28,7 @@ public class ArrayCitas {
 	public ArrayList<Citas> consultarIDCita(int IDCita){
 		ArrayList<Citas> lista = new ArrayList<Citas>();
 		try {
-			CallableStatement csta = ConexionMysql.getConexion().prepareCall("{call citas_ConsultarIDCita(?)}");
+			CallableStatement csta = ConexionMysql.getConexion().prepareCall("{call cita_Consultar(?)}");
 			csta.setInt(1, IDCita);
 			ResultSet rs = csta.executeQuery();
 			Citas citas;
@@ -43,7 +43,7 @@ public class ArrayCitas {
 	public void Insertar(Citas citas) {
 		try {
 			Connection cnx = ConexionMysql.getConexion();
-			CallableStatement csta = cnx.prepareCall("{call citas_Insertar(?,?,?,?,?,?,?,?,?)}");
+			CallableStatement csta = cnx.prepareCall("{call cita_Insertar(?,?,?,?,?,?,?,?,?)}");
 			csta.setInt(1, citas.getIdCita());
 			csta.setString(2, citas.getDia());
 			csta.setString(3, citas.getMes());
@@ -62,7 +62,7 @@ public class ArrayCitas {
 	public void Modificar(Citas citas) {
 		try {
 			Connection cnx = ConexionMysql.getConexion();
-			CallableStatement csta = cnx.prepareCall("{call citas_Modificar(?,?,?,?,?,?,?;?,?}");
+			CallableStatement csta = cnx.prepareCall("{call cita_Modificar(?,?,?,?,?,?,?;?,?}");
 			csta.setInt(1, citas.getIdCita());
 			csta.setString(2, citas.getDia());
 			csta.setString(3, citas.getMes());
@@ -80,7 +80,7 @@ public class ArrayCitas {
 	public void Eliminar(int IdCita) {
 		try {
 			Connection cnx = ConexionMysql.getConexion();
-			CallableStatement csta = cnx.prepareCall("{call citas_Eliminar(?)}");
+			CallableStatement csta = cnx.prepareCall("{call cita_Eliminar(?)}");
 			csta.setInt(1, IdCita);
 			csta.executeUpdate();
 		} catch (Exception e) {
