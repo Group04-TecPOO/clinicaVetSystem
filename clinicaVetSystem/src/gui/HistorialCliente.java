@@ -50,7 +50,7 @@ public class HistorialCliente extends JDialog implements ActionListener {
 		setTitle("HISTORIAL DE DUEÑOS");
 		setBounds(100, 100, 707, 458);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(255, 228, 225));
+		contentPanel.setBackground(new Color(255, 239, 213));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -60,6 +60,7 @@ public class HistorialCliente extends JDialog implements ActionListener {
 		contentPanel.add(tablaPro);
 		
 		TablitaPro = new JTable();
+		TablitaPro.setBackground(new Color(233, 150, 122));
 		tablaPro.setViewportView(TablitaPro);
 		
 		JLabel lblNewLabel = new JLabel("Historial de Cliente");

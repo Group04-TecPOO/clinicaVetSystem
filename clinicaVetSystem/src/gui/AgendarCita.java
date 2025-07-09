@@ -86,7 +86,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		contentPanel.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(192, 192, 192));
+		panel.setBackground(new Color(255, 235, 205));
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "DATOS", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel.setBounds(13, 15, 292, 240);
 		contentPanel.add(panel);
@@ -101,7 +101,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		panel.add(txtDniCli);
 		txtDniCli.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Fecha");
+		JLabel lblNewLabel_1 = new JLabel("Fecha:");
 		lblNewLabel_1.setBounds(35, 111, 46, 14);
 		panel.add(lblNewLabel_1);
 		
@@ -110,24 +110,25 @@ public class AgendarCita extends JDialog implements ActionListener {
 		panel.add(lblNewLabel_2);
 		
 		txtHora = new JTextField();
-		txtHora.setBounds(91, 133, 173, 20);
+		txtHora.setBounds(86, 133, 173, 20);
 		panel.add(txtHora);
 		txtHora.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("Veterinario");
-		lblNewLabel_3.setBounds(29, 158, 68, 14);
+		JLabel lblNewLabel_3 = new JLabel("Veterinario:");
+		lblNewLabel_3.setBounds(13, 158, 68, 14);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Servicios");
+		JLabel lblNewLabel_4 = new JLabel("Servicios:");
 		lblNewLabel_4.setBounds(29, 183, 55, 14);
 		panel.add(lblNewLabel_4);
 		
 		btnRegiCita = new JButton("Registrar");
+		btnRegiCita.setBackground(new Color(250, 128, 114));
 		btnRegiCita.addActionListener(this);
 		btnRegiCita.setBounds(79, 206, 116, 23);
 		panel.add(btnRegiCita);
 		{
-			lblNewLabel_5 = new JLabel("Id Cita");
+			lblNewLabel_5 = new JLabel("ID Cita:");
 			lblNewLabel_5.setBounds(35, 23, 46, 14);
 			panel.add(lblNewLabel_5);
 		}
@@ -138,8 +139,8 @@ public class AgendarCita extends JDialog implements ActionListener {
 			panel.add(txtIdCita);
 		}
 		
-		JLabel lblNewLabel_6 = new JLabel("Id Mascota");
-		lblNewLabel_6.setBounds(10, 86, 71, 14);
+		JLabel lblNewLabel_6 = new JLabel("Id Mascota:");
+		lblNewLabel_6.setBounds(13, 86, 71, 14);
 		panel.add(lblNewLabel_6);
 		
 		txtIdMasco = new JTextField();
@@ -154,7 +155,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		
 		txtSer = new JTextField();
 		txtSer.setColumns(10);
-		txtSer.setBounds(81, 180, 173, 20);
+		txtSer.setBounds(86, 180, 173, 20);
 		panel.add(txtSer);
 		
 		txtDia = new JTextField();
@@ -177,6 +178,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		contentPanel.add(scrollPane);
 		
 		tblCitas = new JTable();
+		tblCitas.setBackground(new Color(250, 250, 210));
 		scrollPane.setViewportView(tblCitas);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -184,14 +186,16 @@ public class AgendarCita extends JDialog implements ActionListener {
 		contentPanel.add(scrollPane_1);
 		
 		tblServi = new JTable();
+		tblServi.setBackground(new Color(250, 250, 210));
 		scrollPane_1.setViewportView(tblServi);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(255, 248, 220));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				cancelButton = new JButton("Volver al Menu");
-				cancelButton.setBackground(new Color(255, 192, 203));
+				cancelButton.setBackground(new Color(250, 128, 114));
 				cancelButton.addActionListener(this);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
