@@ -1,4 +1,4 @@
-package ArrayClases;
+	package ArrayClases;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -90,7 +90,29 @@ public class ArrayMascota {
         } catch (Exception e) {
             System.out.println("ERROR al eliminar mascota: " + e);
         }
+        
     }
+    public void Modificar(Mascota m) {
+        try {
+            Connection cnx = ConexionMysql.getConexion();
+            CallableStatement csta = cnx.prepareCall("{call ma_Modificar(?,?,?,?,?,?,?,?,?)}");
+
+            csta.setInt(1, m.getIdMascota());
+            csta.setString(2, m.getNomMascota());
+            csta.setInt(3, m.getEdad());
+            csta.setDouble(4, m.getPeso());
+            csta.setString(5, m.getRaza());
+            csta.setString(6, m.getEspecie());
+            csta.setString(7, m.getSexo());
+            csta.setBoolean(8, m.isEsterilizado());
+            csta.setString(9, m.getDniCliente());
+
+            csta.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("ERROR al modificar mascota: " + e);
+        }
+    }
+    
     
 }
 

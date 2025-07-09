@@ -75,6 +75,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	private JLabel lblPerrito;
 	private JButton btnBorrar;
 	private JButton btnBorrar_1;
+	private JButton btnModificar;
+	private JButton btnBorrar_2;
 
 	/**
 	 * Launch the application.
@@ -102,10 +104,10 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		contentPanel.setLayout(null);
 		{
 			panel = new JPanel();
+			panel.setBounds(10, 11, 468, 295);
 			panel.setBackground(new Color(230, 230, 250));
 			panel.setLayout(null);
 			panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Propietario", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel.setBounds(10, 11, 468, 295);
 			contentPanel.add(panel);
 			{
 				lblNewLabel = new JLabel("Nombre Completo");
@@ -148,7 +150,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			{
 				btnRegistrar = new JButton("Registrar");
 				btnRegistrar.setBackground(new Color(216, 191, 216));
-				btnRegistrar.setBounds(20, 239, 89, 45);
+				btnRegistrar.setBounds(10, 239, 89, 45);
 				panel.add(btnRegistrar);
 				{
 					txtNomCli = new JTextField();
@@ -160,25 +162,31 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 					btnLimpiarCampos = new JButton("Limpiar Campos");
 					btnLimpiarCampos.setBackground(new Color(216, 191, 216));
 					btnLimpiarCampos.addActionListener(this);
-					btnLimpiarCampos.setBounds(119, 239, 135, 45);
+					btnLimpiarCampos.setBounds(109, 239, 135, 45);
 					panel.add(btnLimpiarCampos);
 				}
 				{
 					btnBorrar = new JButton("Borrar");
 					btnBorrar.addActionListener(this);
 					btnBorrar.setBackground(new Color(216, 191, 216));
-					btnBorrar.setBounds(264, 239, 89, 45);
+					btnBorrar.setBounds(254, 239, 89, 45);
 					panel.add(btnBorrar);
 				}
+				
+				btnModificar = new JButton("Modificar");
+				btnModificar.addActionListener(this);
+				btnModificar.setBackground(new Color(216, 191, 216));
+				btnModificar.setBounds(354, 239, 89, 45);
+				panel.add(btnModificar);
 				btnRegistrar.addActionListener(this);
 			}
 		}
 		{
 			panel_1 = new JPanel();
+			panel_1.setBounds(505, 11, 546, 295);
 			panel_1.setBackground(new Color(230, 230, 250));
 			panel_1.setLayout(null);
 			panel_1.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mascota", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
-			panel_1.setBounds(505, 11, 546, 295);
 			contentPanel.add(panel_1);
 			{
 				lblNewLabel_1 = new JLabel("Nombre Mascota");
@@ -188,7 +196,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			{
 				txtNombreMascota = new JTextField();
 				txtNombreMascota.setColumns(10);
-				txtNombreMascota.setBounds(10, 88, 159, 20);
+				txtNombreMascota.setBounds(10, 88, 169, 20);
 				panel_1.add(txtNombreMascota);
 			}
 			{
@@ -210,7 +218,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			{
 				txtEspecieMascota = new JTextField();
 				txtEspecieMascota.setColumns(10);
-				txtEspecieMascota.setBounds(10, 186, 159, 20);
+				txtEspecieMascota.setBounds(10, 186, 169, 20);
 				panel_1.add(txtEspecieMascota);
 			}
 			{
@@ -221,7 +229,7 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			{
 				txtIDMascota = new JTextField();
 				txtIDMascota.setColumns(10);
-				txtIDMascota.setBounds(10, 36, 159, 20);
+				txtIDMascota.setBounds(10, 36, 169, 20);
 				panel_1.add(txtIDMascota);
 			}
 			{
@@ -242,13 +250,13 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			}
 			{
 				lblTelefono_2 = new JLabel("Esterilización");
-				lblTelefono_2.setBounds(77, 217, 94, 14);
+				lblTelefono_2.setBounds(110, 217, 94, 14);
 				panel_1.add(lblTelefono_2);
 			}
 			{
 				txtRazaMascota = new JTextField();
 				txtRazaMascota.setColumns(10);
-				txtRazaMascota.setBounds(128, 137, 41, 20);
+				txtRazaMascota.setBounds(128, 137, 59, 20);
 				panel_1.add(txtRazaMascota);
 			}
 			{
@@ -258,47 +266,54 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			}
 			{
 				cboEsterilizado = new JComboBox();
-				cboEsterilizado.setModel(new DefaultComboBoxModel(new String[] {"No ", "Si"}));
-				cboEsterilizado.setBounds(89, 241, 59, 21);
+				cboEsterilizado.setModel(new DefaultComboBoxModel(new String[] {"Sí", "No"}));
+				cboEsterilizado.setBounds(110, 241, 59, 21);
 				panel_1.add(cboEsterilizado);
 			}
 			{
 				cboSexo = new JComboBox();
 				cboSexo.setModel(new DefaultComboBoxModel(new String[] {"", "Macho", "Hembra"}));
-				cboSexo.setBounds(10, 240, 51, 22);
+				cboSexo.setBounds(10, 240, 59, 22);
 				panel_1.add(cboSexo);
 			}
 			{
 				btnRegistrarMascota = new JButton("Registrar Mascota");
 				btnRegistrarMascota.setBackground(new Color(216, 191, 216));
-				btnRegistrarMascota.setBounds(158, 229, 151, 44);
+				btnRegistrarMascota.setBounds(370, 24, 151, 44);
 				panel_1.add(btnRegistrarMascota);
 				{
 					btnLimpiarCampos_1 = new JButton("Limpiar Campos");
 					btnLimpiarCampos_1.addActionListener(this);
 					btnLimpiarCampos_1.setBackground(new Color(216, 191, 216));
-					btnLimpiarCampos_1.setBounds(319, 227, 114, 49);
+					btnLimpiarCampos_1.setBounds(370, 213, 151, 49);
 					panel_1.add(btnLimpiarCampos_1);
 				}
 				{
 					lblPerrito = new JLabel("");
-					lblPerrito.setBounds(315, 21, 134, 203);
+					lblPerrito.setBounds(214, 36, 134, 203);
 					panel_1.add(lblPerrito);
 				}
 				{
 					btnBorrar_1 = new JButton("Borrar");
 					btnBorrar_1.addActionListener(this);
 					btnBorrar_1.setBackground(new Color(216, 191, 216));
-					btnBorrar_1.setBounds(447, 229, 89, 45);
+					btnBorrar_1.setBounds(370, 88, 151, 45);
 					panel_1.add(btnBorrar_1);
+				}
+				{
+					btnBorrar_2 = new JButton("Modificar");
+					btnBorrar_2.addActionListener(this);
+					btnBorrar_2.setBackground(new Color(216, 191, 216));
+					btnBorrar_2.setBounds(370, 153, 151, 45);
+					panel_1.add(btnBorrar_2);
 				}
 				btnRegistrarMascota.addActionListener(this);
 			}
 		}
 		{
 			scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 330, 468, 374);
 			scrollPane.addMouseListener(this);
-			scrollPane.setBounds(10, 330, 468, 309);
 			contentPanel.add(scrollPane);
 			{
 				tablaPropietario = new JTable();
@@ -307,7 +322,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 		}
 		{
 			scrollPane_1 = new JScrollPane();
-			scrollPane_1.setBounds(505, 330, 546, 309);
+			scrollPane_1.addMouseListener(this);
+			scrollPane_1.setBounds(505, 330, 546, 374);
 			contentPanel.add(scrollPane_1);
 			{
 				tablaMascota = new JTable();
@@ -397,6 +413,12 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBorrar_2) {
+			do_btnBorrar_2_actionPerformed(e);
+		}
+		if (e.getSource() == btnModificar) {
+			do_btnModificar_actionPerformed(e);
+		}
 		if (e.getSource() == btnBorrar) {
 			do_btnBorrar_actionPerformed(e);
 		}
@@ -505,6 +527,9 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	public void mousePressed(MouseEvent e) {
 	}
 	public void mouseReleased(MouseEvent e) {
+		if (e.getSource() == scrollPane_1) {
+			do_scrollPane_1_mouseReleased(e);
+		}
 	}
 	protected void do_scrollPane_mouseClicked(MouseEvent e) {
 		int fila = tablaPropietario.getSelectedRow();
@@ -546,5 +571,77 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	        JOptionPane.showMessageDialog(null, "Ingrese el DNI del cliente a eliminar.");
 	    }
 		
+	}
+	protected void do_btnModificar_actionPerformed(ActionEvent e) {
+		
+		try {
+	        String dni = txtDniCli.getText().trim();
+	        String nombre = txtNomCli.getText().trim();
+	        String direccion = txtDireCli.getText().trim();
+	        String telefono = txtTelCli.getText().trim();
+
+	        if (dni.isEmpty() || nombre.isEmpty() || direccion.isEmpty() || telefono.isEmpty()) {
+	            JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios");
+	            return;
+	        }
+
+	        Cliente c = new Cliente(dni, nombre, direccion, telefono);
+	        ArrayCliente ac = new ArrayCliente();
+	        ac.Modificar(c);
+
+	        Listar("");
+	        Limpiar();
+	        JOptionPane.showMessageDialog(null, "Cliente modificado exitosamente");
+
+	    } catch (Exception ex) {
+	        JOptionPane.showMessageDialog(null, "Error al modificar: " + ex.getMessage());
+	    }
+		
+	}
+	protected void do_btnBorrar_2_actionPerformed(ActionEvent e) {
+		
+		int fila = tablaMascota.getSelectedRow();
+
+	    if (fila == -1) {
+	        JOptionPane.showMessageDialog(null, "Seleccione una mascota para modificar.");
+	        return;
+	    }
+
+	    try {
+	        int id = Integer.parseInt(tablaMascota.getValueAt(fila, 0).toString());
+	        String nombre = txtNombreMascota.getText().trim();
+	        int edad = Integer.parseInt(txtEdadMascota.getText().trim());
+	        double peso = Double.parseDouble(txtPesoMascota.getText().trim());
+	        String raza = txtRazaMascota.getText().trim();
+	        String especie = txtEspecieMascota.getText().trim();
+	        String sexo = cboSexo.getSelectedItem().toString();
+	        boolean esterilizado = cboEsterilizado.getSelectedItem().toString().equals("Sí");
+	        String dni = txtDniCli.getText().trim();
+
+	        Mascota m = new Mascota(id, nombre, edad, peso, raza, especie, sexo, esterilizado, dni);
+	        ArrayMascota am = new ArrayMascota();
+	        am.Modificar(m);
+
+	        ListarMascota(""); // Refresca tabla
+	        JOptionPane.showMessageDialog(null, "Mascota modificada correctamente.");
+	        LimpiarMascota();
+	    } catch (Exception ex) {
+	        JOptionPane.showMessageDialog(null, "Error al modificar: " + ex.getMessage());
+	    }
+		
+	}
+	protected void do_scrollPane_1_mouseReleased(MouseEvent e) {
+		int fila = tablaMascota.getSelectedRow();
+	    if (fila != -1) {
+	        txtNombreMascota.setText(String.valueOf(tablaMascota.getValueAt(fila, 1)));
+	        txtEdadMascota.setText(String.valueOf(tablaMascota.getValueAt(fila, 2)));
+	        txtPesoMascota.setText(String.valueOf(tablaMascota.getValueAt(fila, 3)));
+	        txtRazaMascota.setText(String.valueOf(tablaMascota.getValueAt(fila, 4)));
+	        txtEspecieMascota.setText(String.valueOf(tablaMascota.getValueAt(fila, 5)));
+	        cboSexo.setSelectedItem(String.valueOf(tablaMascota.getValueAt(fila, 6)));
+	        cboEsterilizado.setSelectedItem(String.valueOf(tablaMascota.getValueAt(fila, 7)));
+	        txtDniCli.setText(String.valueOf(tablaMascota.getValueAt(fila, 8)));
+	    }
+	    
 	}
 }

@@ -69,16 +69,16 @@ public class ArrayCliente {
 	
 	public void Modificar(Cliente cl) {
 		try {
-			Connection cnx = ConexionMysql.getConexion();
-			CallableStatement csta = cnx.prepareCall("{call cl_Modificar(?,?,?,?}");
-			csta.setString(1, cl.getNombreCompleto());
-			csta.setString(2, cl.getDniCliente());
-			csta.setString(3, cl.getDireccion());
-			csta.setString(4, cl.getTelefono());
-			csta.executeUpdate();
-		} catch (Exception e) {
-			System.out.println("ERROR" + e);
-		}
+	        Connection cnx = ConexionMysql.getConexion();
+	        CallableStatement csta = cnx.prepareCall("{call cl_Modificar(?,?,?,?)}");
+	        csta.setString(1, cl.getDniCliente());        
+	        csta.setString(2, cl.getNombreCompleto());    
+	        csta.setString(3, cl.getDireccion());
+	        csta.setString(4, cl.getTelefono());
+	        csta.executeUpdate();
+	    } catch (Exception e) {
+	        System.out.println("ERROR: " + e);
+	    }
 	}
 	
 	public void Eliminar(String dni) {
