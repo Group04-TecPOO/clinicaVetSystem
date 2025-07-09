@@ -19,6 +19,7 @@ public class MenuJefe extends JDialog implements ActionListener {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
+	private JButton btnNewButton_2_1;
 
 	/**
 	 * Launch the application.
@@ -38,7 +39,7 @@ public class MenuJefe extends JDialog implements ActionListener {
 	 */
 	public MenuJefe() {
 		setTitle("MENÚ DE JEFE");
-		setBounds(100, 100, 332, 260);
+		setBounds(100, 100, 362, 278);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(245, 222, 179));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -46,6 +47,7 @@ public class MenuJefe extends JDialog implements ActionListener {
 		contentPanel.setLayout(null);
 		{
 			btnNewButton = new JButton("Historial de Clientes");
+			btnNewButton.addActionListener(this);
 			btnNewButton.setBackground(new Color(250, 128, 114));
 			btnNewButton.setBounds(77, 48, 144, 23);
 			contentPanel.add(btnNewButton);
@@ -62,6 +64,12 @@ public class MenuJefe extends JDialog implements ActionListener {
 			btnNewButton_2.setBounds(77, 114, 144, 23);
 			contentPanel.add(btnNewButton_2);
 		}
+		
+		btnNewButton_2_1 = new JButton("Ver Programadores");
+		btnNewButton_2_1.addActionListener(this);
+		btnNewButton_2_1.setBackground(new Color(250, 128, 114));
+		btnNewButton_2_1.setBounds(10, 172, 144, 23);
+		contentPanel.add(btnNewButton_2_1);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(245, 222, 179));
@@ -78,6 +86,12 @@ public class MenuJefe extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+		if (e.getSource() == btnNewButton_2_1) {
+			do_btnNewButton_2_1_actionPerformed(e);
+		}
 		if (e.getSource() == cancelButton) {
 			do_cancelButton_actionPerformed(e);
 		}
@@ -86,5 +100,11 @@ public class MenuJefe extends JDialog implements ActionListener {
 		Login lg = new Login(getName());
 		lg.setVisible(true);
 		this.setVisible(false);
+	}
+	protected void do_btnNewButton_2_1_actionPerformed(ActionEvent e) {
+		Programadores p = new Programadores();
+		p.setVisible(true);
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
 	}
 }
