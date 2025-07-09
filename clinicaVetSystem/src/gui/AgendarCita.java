@@ -74,6 +74,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 	private JTextField txtDia;
 	private JTextField txtMes;
 	private JTextField txtAño;
+	private JButton btnNewButton;
 	
 	
 	public AgendarCita() {
@@ -125,7 +126,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		btnRegiCita = new JButton("Registrar");
 		btnRegiCita.setBackground(new Color(250, 128, 114));
 		btnRegiCita.addActionListener(this);
-		btnRegiCita.setBounds(79, 206, 116, 23);
+		btnRegiCita.setBounds(79, 206, 98, 23);
 		panel.add(btnRegiCita);
 		{
 			lblNewLabel_5 = new JLabel("ID Cita:");
@@ -173,6 +174,12 @@ public class AgendarCita extends JDialog implements ActionListener {
 		txtAño.setBounds(156, 108, 68, 20);
 		panel.add(txtAño);
 		
+		btnNewButton = new JButton("Borrar");
+		btnNewButton.setBackground(new Color(250, 128, 114));
+		btnNewButton.addActionListener(this);
+		btnNewButton.setBounds(187, 206, 89, 23);
+		panel.add(btnNewButton);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(14, 261, 671, 225);
 		contentPanel.add(scrollPane);
@@ -206,6 +213,9 @@ public class AgendarCita extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
 		if (e.getSource() == btnRegiCita) {
 			do_btnRegiCita_actionPerformed(e);
 		}
@@ -311,5 +321,21 @@ public class AgendarCita extends JDialog implements ActionListener {
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(null, "Eerror al agregar la cita");
 		}        
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		String id = txtIdCita.getText().trim();
+	    if (!id.isEmpty()) {
+	        try {
+	            ArrayCitas ac = new ArrayCitas();
+	            ac.Eliminar(id);
+	            JOptionPane.showMessageDialog(null, "Cita eliminada correctamente");
+	            ListarCitas(); // refresca la tabla si lo tienes implementado
+	        } catch (Exception ex) {
+	            JOptionPane.showMessageDialog(null, "Error al eliminar cita: " + ex.getMessage());
+	        }
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Por favor, ingrese un ID de cita");
+	    }
+		
 	}
 }

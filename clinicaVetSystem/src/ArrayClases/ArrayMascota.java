@@ -80,7 +80,17 @@ public class ArrayMascota {
         }
         return lista;
     }
-
+    
+    public void eliminarMascota(int idMascota) {
+        try {
+            Connection cnx = ConexionMysql.getConexion();
+            CallableStatement csta = cnx.prepareCall("{call ma_Eliminar(?)}");
+            csta.setInt(1, idMascota);
+            csta.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("ERROR al eliminar mascota: " + e);
+        }
+    }
     
 }
 

@@ -73,6 +73,8 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	private JComboBox cboSexo;
 	private JButton btnLimpiarCampos_1;
 	private JLabel lblPerrito;
+	private JButton btnBorrar;
+	private JButton btnBorrar_1;
 
 	/**
 	 * Launch the application.
@@ -161,6 +163,13 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 					btnLimpiarCampos.setBounds(119, 239, 135, 45);
 					panel.add(btnLimpiarCampos);
 				}
+				{
+					btnBorrar = new JButton("Borrar");
+					btnBorrar.addActionListener(this);
+					btnBorrar.setBackground(new Color(216, 191, 216));
+					btnBorrar.setBounds(264, 239, 89, 45);
+					panel.add(btnBorrar);
+				}
 				btnRegistrar.addActionListener(this);
 			}
 		}
@@ -211,7 +220,6 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			}
 			{
 				txtIDMascota = new JTextField();
-				txtIDMascota.setEnabled(false);
 				txtIDMascota.setColumns(10);
 				txtIDMascota.setBounds(10, 36, 159, 20);
 				panel_1.add(txtIDMascota);
@@ -263,19 +271,26 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 			{
 				btnRegistrarMascota = new JButton("Registrar Mascota");
 				btnRegistrarMascota.setBackground(new Color(216, 191, 216));
-				btnRegistrarMascota.setBounds(247, 240, 151, 44);
+				btnRegistrarMascota.setBounds(158, 229, 151, 44);
 				panel_1.add(btnRegistrarMascota);
 				{
 					btnLimpiarCampos_1 = new JButton("Limpiar Campos");
 					btnLimpiarCampos_1.addActionListener(this);
 					btnLimpiarCampos_1.setBackground(new Color(216, 191, 216));
-					btnLimpiarCampos_1.setBounds(408, 235, 114, 49);
+					btnLimpiarCampos_1.setBounds(319, 227, 114, 49);
 					panel_1.add(btnLimpiarCampos_1);
 				}
 				{
 					lblPerrito = new JLabel("");
 					lblPerrito.setBounds(315, 21, 134, 203);
 					panel_1.add(lblPerrito);
+				}
+				{
+					btnBorrar_1 = new JButton("Borrar");
+					btnBorrar_1.addActionListener(this);
+					btnBorrar_1.setBackground(new Color(216, 191, 216));
+					btnBorrar_1.setBounds(447, 229, 89, 45);
+					panel_1.add(btnBorrar_1);
 				}
 				btnRegistrarMascota.addActionListener(this);
 			}
@@ -382,6 +397,12 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBorrar) {
+			do_btnBorrar_actionPerformed(e);
+		}
+		if (e.getSource() == btnBorrar_1) {
+			do_btnBorrar_1_actionPerformed(e);
+		}
 		if (e.getSource() == btnLimpiarCampos_1) {
 			do_btnLimpiarCampos_1_actionPerformed(e);
 		}
@@ -497,5 +518,33 @@ public class RegistrarPacientes extends JDialog implements ActionListener, Mouse
 	}
 	protected void do_btnLimpiarCampos_1_actionPerformed(ActionEvent e) {
 		LimpiarMascota();
+	}
+	protected void do_btnBorrar_1_actionPerformed(ActionEvent e) {
+		try {
+	        int id = Integer.parseInt(txtIDMascota.getText().trim());
+	        ArrayMascota am = new ArrayMascota();
+	        am.eliminarMascota(id);
+	        JOptionPane.showMessageDialog(null, "Mascota eliminada correctamente");
+	        ListarMascota(""); 
+	    } catch (NumberFormatException ex) {
+	        JOptionPane.showMessageDialog(null, "Ingrese un número válido para el ID de la mascota");
+	    } catch (Exception ex) {
+	        JOptionPane.showMessageDialog(null, "Error al eliminar mascota: " + ex.getMessage());
+	    }
+	}
+	protected void do_btnBorrar_actionPerformed(ActionEvent e) {
+		String dni = txtDniCli.getText();
+	    if (!dni.isEmpty()) {
+	        int confirm = JOptionPane.showConfirmDialog(null, "¿Deseas eliminar al cliente con DNI " + dni + "?", "Confirmar", JOptionPane.YES_NO_OPTION);
+	        if (confirm == JOptionPane.YES_OPTION) {
+	            ArrayCliente ac = new ArrayCliente();
+	            ac.Eliminar(dni);
+	            Listar("");     
+	            Limpiar();       
+	        }
+	    } else {
+	        JOptionPane.showMessageDialog(null, "Ingrese el DNI del cliente a eliminar.");
+	    }
+		
 	}
 }
