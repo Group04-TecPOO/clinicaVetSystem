@@ -8,10 +8,10 @@ public class Citas {
 	private String Año;
 	private String Hora;
 	private String DniCliente;
-	private int IdMascota;
+	private String IdMascota;
 	private String DniEmpleado;
 	private String IdServicio;
-	public Citas(int idCita, String dia, String mes, String año, String hora, String dniCliente, int idMascota,
+	public Citas(int idCita, String dia, String mes, String año, String hora, String dniCliente, String idMascota,
 			String dniEmpleado, String idServicio) {
 		super();
 		IdCita = idCita;
@@ -60,10 +60,10 @@ public class Citas {
 	public void setDniCliente(String dniCliente) {
 		DniCliente = dniCliente;
 	}
-	public int getIdMascota() {
+	public String getIdMascota() {
 		return IdMascota;
 	}
-	public void setIdMascota(int idMascota) {
+	public void setIdMascota(String idMascota) {
 		IdMascota = idMascota;
 	}
 	public String getDniEmpleado() {
@@ -78,5 +78,6 @@ public class Citas {
 	public void setIdServicio(String idServicio) {
 		IdServicio = idServicio;
 	}
+	
 	
 }

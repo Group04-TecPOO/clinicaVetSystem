@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -22,7 +23,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import ArrayClases.ArrayCitas;
+import ArrayClases.ArrayMascota;
 import ArrayClases.ArrayServicio;
+import clases.Citas;
+import clases.Mascota;
 import clases.Servicio;
 
 import javax.swing.border.EtchedBorder;
@@ -37,6 +42,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 	private JTextField txtHora;
 	private JTable tblCitas;
 	private JTable tblServi;
+	private JButton btnRegiCita;
 
 	/**
 	 * Launch the application.
@@ -54,6 +60,22 @@ public class AgendarCita extends JDialog implements ActionListener {
 	/**
 	 * Create the dialog.
 	 */
+	
+	private JComboBox<String> cboDia;
+	private JComboBox<String> cboMes;
+	private JComboBox<String> cboAño;
+	private JComboBox<String> cboVeterinario;
+	private JComboBox<String> cboServi;
+	private JLabel lblNewLabel_5;
+	private JTextField txtIdCita;
+	private JTextField txtIdMasco;
+	private JTextField txtVete;
+	private JTextField txtSer;
+	private JTextField txtDia;
+	private JTextField txtMes;
+	private JTextField txtAño;
+	
+	
 	public AgendarCita() {
 		setTitle("Agendar Cita");
 		setBounds(100, 100, 728, 570);
@@ -71,61 +93,84 @@ public class AgendarCita extends JDialog implements ActionListener {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Dueño: ");
-		lblNewLabel.setBounds(35, 30, 46, 14);
+		lblNewLabel.setBounds(35, 48, 46, 14);
 		panel.add(lblNewLabel);
 		
 		txtDniCli = new JTextField();
-		txtDniCli.setBounds(79, 27, 175, 20);
+		txtDniCli.setBounds(84, 45, 175, 20);
 		panel.add(txtDniCli);
 		txtDniCli.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Fecha");
-		lblNewLabel_1.setBounds(35, 62, 46, 14);
+		lblNewLabel_1.setBounds(35, 111, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		JComboBox cboDia = new JComboBox();
-		cboDia.setBounds(79, 58, 41, 22);
-		panel.add(cboDia);
-		cboDia.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"}));
-		
-		JComboBox cboMes = new JComboBox();
-		cboMes.setBounds(130, 58, 46, 22);
-		panel.add(cboMes);
-		cboMes.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
-		
-		JComboBox cboAño = new JComboBox();
-		cboAño.setBounds(187, 58, 66, 22);
-		panel.add(cboAño);
-		cboAño.setModel(new DefaultComboBoxModel(new String[] {"2025", "2026", "2027", "2028", "2029", "2030"}));
-		
 		JLabel lblNewLabel_2 = new JLabel("Hora: ");
-		lblNewLabel_2.setBounds(35, 87, 46, 14);
+		lblNewLabel_2.setBounds(35, 136, 46, 14);
 		panel.add(lblNewLabel_2);
 		
 		txtHora = new JTextField();
-		txtHora.setBounds(79, 87, 173, 20);
+		txtHora.setBounds(91, 133, 173, 20);
 		panel.add(txtHora);
 		txtHora.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Veterinario");
-		lblNewLabel_3.setBounds(29, 120, 68, 14);
+		lblNewLabel_3.setBounds(29, 158, 68, 14);
 		panel.add(lblNewLabel_3);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(99, 116, 150, 22);
-		panel.add(comboBox);
-		
 		JLabel lblNewLabel_4 = new JLabel("Servicios");
-		lblNewLabel_4.setBounds(29, 155, 55, 14);
+		lblNewLabel_4.setBounds(29, 183, 55, 14);
 		panel.add(lblNewLabel_4);
 		
-		JComboBox cboServi = new JComboBox();
-		cboServi.setBounds(99, 151, 150, 22);
-		panel.add(cboServi);
-		
-		JButton btnRegiCita = new JButton("Registrar");
-		btnRegiCita.setBounds(74, 197, 116, 23);
+		btnRegiCita = new JButton("Registrar");
+		btnRegiCita.addActionListener(this);
+		btnRegiCita.setBounds(79, 206, 116, 23);
 		panel.add(btnRegiCita);
+		{
+			lblNewLabel_5 = new JLabel("Id Cita");
+			lblNewLabel_5.setBounds(35, 23, 46, 14);
+			panel.add(lblNewLabel_5);
+		}
+		{
+			txtIdCita = new JTextField();
+			txtIdCita.setColumns(10);
+			txtIdCita.setBounds(84, 20, 175, 20);
+			panel.add(txtIdCita);
+		}
+		
+		JLabel lblNewLabel_6 = new JLabel("Id Mascota");
+		lblNewLabel_6.setBounds(10, 86, 71, 14);
+		panel.add(lblNewLabel_6);
+		
+		txtIdMasco = new JTextField();
+		txtIdMasco.setColumns(10);
+		txtIdMasco.setBounds(84, 76, 175, 20);
+		panel.add(txtIdMasco);
+		
+		txtVete = new JTextField();
+		txtVete.setColumns(10);
+		txtVete.setBounds(86, 155, 173, 20);
+		panel.add(txtVete);
+		
+		txtSer = new JTextField();
+		txtSer.setColumns(10);
+		txtSer.setBounds(81, 180, 173, 20);
+		panel.add(txtSer);
+		
+		txtDia = new JTextField();
+		txtDia.setBounds(90, 108, 23, 20);
+		panel.add(txtDia);
+		txtDia.setColumns(10);
+		
+		txtMes = new JTextField();
+		txtMes.setColumns(10);
+		txtMes.setBounds(123, 108, 23, 20);
+		panel.add(txtMes);
+		
+		txtAño = new JTextField();
+		txtAño.setColumns(10);
+		txtAño.setBounds(156, 108, 68, 20);
+		panel.add(txtAño);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(14, 261, 601, 225);
@@ -153,9 +198,13 @@ public class AgendarCita extends JDialog implements ActionListener {
 			}
 		}
 		ListarServicio();
+		ListarCitas();
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnRegiCita) {
+			do_btnRegiCita_actionPerformed(e);
+		}
 		if (e.getSource() == cancelButton) {
 			do_cancelButton_actionPerformed(e);
 		}
@@ -189,5 +238,74 @@ public class AgendarCita extends JDialog implements ActionListener {
 	    tblServi.setModel(modelo);
 	}
 	
+	public void ListarCitas() {
+	    DefaultTableModel modelo = new DefaultTableModel();
+	    ArrayCitas ac = new ArrayCitas();
+	    ArrayList<Citas> lista = ac.listarCitas();
+
+	    modelo.setRowCount(lista.size());
+	    modelo.addColumn("ID");
+	    modelo.addColumn("Día");
+	    modelo.addColumn("Mes");
+	    modelo.addColumn("Año");
+	    modelo.addColumn("Hora");
+	    modelo.addColumn("DNI Cliente");
+	    modelo.addColumn("ID Mascota");
+	    modelo.addColumn("DNI Veterinario");
+	    modelo.addColumn("ID Servicio");
+
+	    Iterator<Citas> it = lista.iterator();
+	    int i = 0;
+	    while (it.hasNext()) {
+	        Citas c = it.next();
+	        modelo.setValueAt(c.getIdCita(), i, 0);
+	        modelo.setValueAt(c.getDia(), i, 1);
+	        modelo.setValueAt(c.getMes(), i, 2);
+	        modelo.setValueAt(c.getAño(), i, 3);
+	        modelo.setValueAt(c.getHora(), i, 4);
+	        modelo.setValueAt(c.getDniCliente(), i, 5);
+	        modelo.setValueAt(c.getIdMascota(), i, 6);
+	        modelo.setValueAt(c.getDniEmpleado(), i, 7);
+	        modelo.setValueAt(c.getIdServicio(), i, 8);
+	        i++;
+	    }
+
+	    tblCitas.setModel(modelo);
+	}
 	
+	void LimpiarCitas() {
+		txtIdCita.setText("");
+		txtDniCli.setText("");
+		txtHora.setText("");
+		cboDia.setSelectedIndex(0);
+		cboMes.setSelectedIndex(0);
+		cboAño.setSelectedIndex(0);
+		cboVeterinario.setSelectedIndex(0);
+		cboServi.setSelectedIndex(0);
+	}
+	
+	
+
+	protected void do_btnRegiCita_actionPerformed(ActionEvent e) {
+		try {
+				int cita = Integer.parseInt(txtIdCita.getText());
+				String dniCli = txtDniCli.getText().trim();
+	            String dia = txtDia.getText();
+	            String mes = txtMes.getText();
+	            String año = txtAño.getText(); 
+	            String hora = txtHora.getText().trim();
+	            String dniVet = txtVete.getText();
+	            String idServicio = txtSer.getText();
+	            String idMascota = txtIdMasco.getText().trim();
+	            
+	            Citas ci = new Citas(Integer.parseInt(txtIdCita.getText()), txtDia.getText(), txtMes.getText(), txtAño.getText(), txtHora.getText(), txtDniCli.getText(), txtIdMasco.getText(), txtVete.getText(), txtSer.getText());
+	            ArrayCitas ac = new ArrayCitas();
+	            ac.Insertar(ci);
+	            ListarCitas();
+	            JOptionPane.showMessageDialog(this, "Agregado con exito");
+
+		} catch (Exception e2) {
+			JOptionPane.showMessageDialog(null, "Eerror al agregar la cita");
+		}        
+	}
 }
