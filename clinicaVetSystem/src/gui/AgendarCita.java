@@ -173,7 +173,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 		panel.add(txtAño);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(14, 261, 601, 225);
+		scrollPane.setBounds(14, 261, 671, 225);
 		contentPanel.add(scrollPane);
 		
 		tblCitas = new JTable();
