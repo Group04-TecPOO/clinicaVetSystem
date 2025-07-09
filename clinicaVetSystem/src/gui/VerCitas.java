@@ -22,13 +22,16 @@ import javax.swing.JTextField;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class VerCitas extends JDialog implements KeyListener {
+public class VerCitas extends JDialog implements KeyListener, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTable TablaCitas;
 	private JTextField txtDniCliente;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -75,23 +78,16 @@ public class VerCitas extends JDialog implements KeyListener {
 			contentPanel.add(lblNewLabel);
 		}
 		{
+			btnNewButton = new JButton("Volver al Menú");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(558, 458, 121, 23);
+			contentPanel.add(btnNewButton);
+		}
+		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 250, 240));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setBackground(new Color(255, 127, 80));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
-			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setBackground(new Color(255, 127, 80));
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
 		}
 		ListarCitas("");
 	}
@@ -147,5 +143,15 @@ public class VerCitas extends JDialog implements KeyListener {
 		ListarCitas(ID);
 		
 		
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		MenuVeterinario mv = new MenuVeterinario();
+		mv.setVisible(true);
+		this.setVisible(false);
 	}
 }

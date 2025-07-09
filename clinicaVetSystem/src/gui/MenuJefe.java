@@ -54,6 +54,7 @@ public class MenuJefe extends JDialog implements ActionListener {
 		}
 		{
 			btnNewButton_1 = new JButton("Historial de Mascota");
+			btnNewButton_1.addActionListener(this);
 			btnNewButton_1.setBackground(new Color(250, 128, 114));
 			btnNewButton_1.setBounds(77, 80, 144, 23);
 			contentPanel.add(btnNewButton_1);
@@ -86,6 +87,9 @@ public class MenuJefe extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton_1) {
+			do_btnNewButton_1_actionPerformed(e);
+		}
 		if (e.getSource() == btnNewButton) {
 			do_btnNewButton_actionPerformed(e);
 		}
@@ -106,5 +110,13 @@ public class MenuJefe extends JDialog implements ActionListener {
 		p.setVisible(true);
 	}
 	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		HistorialCliente hc = new HistorialCliente();
+		hc.setVisible(true);
+		this.setVisible(false);
+	}
+	protected void do_btnNewButton_1_actionPerformed(ActionEvent e) {
+		HistorialMascota hm = new HistorialMascota();
+		hm.setVisible(true);
+		this.setVisible(false);
 	}
 }

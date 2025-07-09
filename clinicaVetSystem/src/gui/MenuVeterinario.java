@@ -17,6 +17,7 @@ public class MenuVeterinario extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton cancelButton;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -43,7 +44,8 @@ public class MenuVeterinario extends JDialog implements ActionListener {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Ver citas");
+		btnNewButton = new JButton("Ver citas");
+		btnNewButton.addActionListener(this);
 		btnNewButton.setBackground(new Color(102, 205, 170));
 		btnNewButton.setBounds(118, 39, 147, 42);
 		contentPanel.add(btnNewButton);
@@ -63,6 +65,9 @@ public class MenuVeterinario extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
 		if (e.getSource() == cancelButton) {
 			do_cancelButton_actionPerformed(e);
 		}
@@ -70,6 +75,12 @@ public class MenuVeterinario extends JDialog implements ActionListener {
 	protected void do_cancelButton_actionPerformed(ActionEvent e) {
 		Login lg = new Login(getName());
 		lg.setVisible(true);
+		this.setVisible(false);
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		
+		VerCitas vc = new VerCitas();
+		vc.setVisible(true);
 		this.setVisible(false);
 	}
 }
