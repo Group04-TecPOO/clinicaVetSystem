@@ -18,7 +18,7 @@ public class ArrayCitas {
 	            ResultSet rs = csta.executeQuery();
 	            while (rs.next()) {
 	                Citas citas = new Citas(
-	                    rs.getInt(1),    // IdCita
+	                    rs.getString(1),    // IdCita
 	                    rs.getString(2), // Día
 	                    rs.getString(3), // Mes
 	                    rs.getString(4), // Año
@@ -36,15 +36,15 @@ public class ArrayCitas {
 	        return lista;
 	    }
 
-	    public ArrayList<Citas> consultarIDCita(int idCita) {
+	    public ArrayList<Citas> consultarIDCita(String idCita) {
 	        ArrayList<Citas> lista = new ArrayList<>();
 	        try {
 	            CallableStatement csta = ConexionMysql.getConexion().prepareCall("{call cita_Consultar(?)}");
-	            csta.setInt(1, idCita);
+	            csta.setString(1, idCita);
 	            ResultSet rs = csta.executeQuery();
 	            while (rs.next()) {
 	                Citas citas = new Citas(
-	                    rs.getInt(1),
+	                    rs.getString(1),
 	                    rs.getString(2),
 	                    rs.getString(3),
 	                    rs.getString(4),
@@ -61,12 +61,34 @@ public class ArrayCitas {
 	        }
 	        return lista;
 	    }
+	    
+	    
+	    public ArrayList<Citas> consultarDniEmpleado(String dniEmpleado) {
+	        ArrayList<Citas> lista = new ArrayList<>();
+	        try {
+	            CallableStatement csta = ConexionMysql.getConexion().prepareCall("{call cita_ConsultarPorDniEmpleado(?)}");
+	            csta.setString(1, dniEmpleado);
+	            ResultSet rs = csta.executeQuery();
 
+	            while (rs.next()) {
+	                Citas c = new Citas(
+	                    rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+	                    rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)
+	                );
+	                lista.add(c);
+	            }
+	        } catch (Exception e) {
+	            System.out.println("ERROR consultarDniEmpleado(): " + e.getMessage());
+	        }
+	        return lista;
+	    }
+
+	    
 	    public void Insertar(Citas citas) {
 	        try {
 	            Connection cnx = ConexionMysql.getConexion();
 	            CallableStatement csta = cnx.prepareCall("{call cita_Insertar(?,?,?,?,?,?,?,?,?)}");
-	            csta.setInt(1, citas.getIdCita());
+	            csta.setString(1, citas.getIdCita());
 	            csta.setString(2, citas.getDia());
 	            csta.setString(3, citas.getMes());
 	            csta.setString(4, citas.getAño());
@@ -85,7 +107,7 @@ public class ArrayCitas {
 	        try {
 	            Connection cnx = ConexionMysql.getConexion();
 	            CallableStatement csta = cnx.prepareCall("{call cita_Modificar(?,?,?,?,?,?,?,?,?)}");
-	            csta.setInt(1, citas.getIdCita());
+	            csta.setString(1, citas.getIdCita());
 	            csta.setString(2, citas.getDia());
 	            csta.setString(3, citas.getMes());
 	            csta.setString(4, citas.getAño());
@@ -100,11 +122,11 @@ public class ArrayCitas {
 	        }
 	    }
 
-	    public void Eliminar(int idCita) {
+	    public void Eliminar(String idCita) {
 	        try {
 	            Connection cnx = ConexionMysql.getConexion();
 	            CallableStatement csta = cnx.prepareCall("{call cita_Eliminar(?)}");
-	            csta.setInt(1, idCita);
+	            csta.setString(1, idCita);
 	            csta.executeUpdate();
 	        } catch (Exception e) {
 	            System.out.println("ERROR Eliminar(): " + e);

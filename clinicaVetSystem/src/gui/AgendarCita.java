@@ -298,7 +298,7 @@ public class AgendarCita extends JDialog implements ActionListener {
 	            String idServicio = txtSer.getText();
 	            String idMascota = txtIdMasco.getText().trim();
 	            
-	            Citas ci = new Citas(Integer.parseInt(txtIdCita.getText()), txtDia.getText(), txtMes.getText(), txtAño.getText(), txtHora.getText(), txtDniCli.getText(), txtIdMasco.getText(), txtVete.getText(), txtSer.getText());
+	            Citas ci = new Citas(txtIdCita.getText(), txtDia.getText(), txtMes.getText(), txtAño.getText(), txtHora.getText(), txtDniCli.getText(), txtIdMasco.getText(), txtVete.getText(), txtSer.getText());
 	            ArrayCitas ac = new ArrayCitas();
 	            ac.Insertar(ci);
 	            ListarCitas();

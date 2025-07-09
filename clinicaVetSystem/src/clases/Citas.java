@@ -2,7 +2,7 @@ package clases;
 
 public class Citas {
 
-	private int IdCita;
+	private String IdCita;
 	private String Dia;
 	private String Mes;
 	private String Año;
@@ -11,7 +11,7 @@ public class Citas {
 	private String IdMascota;
 	private String DniEmpleado;
 	private String IdServicio;
-	public Citas(int idCita, String dia, String mes, String año, String hora, String dniCliente, String idMascota,
+	public Citas(String idCita, String dia, String mes, String año, String hora, String dniCliente, String idMascota,
 			String dniEmpleado, String idServicio) {
 		super();
 		IdCita = idCita;
@@ -24,10 +24,10 @@ public class Citas {
 		DniEmpleado = dniEmpleado;
 		IdServicio = idServicio;
 	}
-	public int getIdCita() {
+	public String getIdCita() {
 		return IdCita;
 	}
-	public void setIdCita(int idCita) {
+	public void setIdCita(String idCita) {
 		IdCita = idCita;
 	}
 	public String getDia() {
@@ -78,6 +78,7 @@ public class Citas {
 	public void setIdServicio(String idServicio) {
 		IdServicio = idServicio;
 	}
+	
 	
 	
 }

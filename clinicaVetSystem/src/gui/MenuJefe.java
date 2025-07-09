@@ -9,12 +9,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class MenuJefe extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JButton cancelButton;
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
 
 	/**
 	 * Launch the application.
@@ -33,17 +37,39 @@ public class MenuJefe extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public MenuJefe() {
-		setBounds(100, 100, 591, 483);
+		setTitle("MENÚ DE JEFE");
+		setBounds(100, 100, 332, 260);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
+		contentPanel.setBackground(new Color(245, 222, 179));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			btnNewButton = new JButton("Historial de Clientes");
+			btnNewButton.setBackground(new Color(250, 128, 114));
+			btnNewButton.setBounds(77, 48, 144, 23);
+			contentPanel.add(btnNewButton);
+		}
+		{
+			btnNewButton_1 = new JButton("Historial de Mascota");
+			btnNewButton_1.setBackground(new Color(250, 128, 114));
+			btnNewButton_1.setBounds(77, 80, 144, 23);
+			contentPanel.add(btnNewButton_1);
+		}
+		{
+			btnNewButton_2 = new JButton("Ventas");
+			btnNewButton_2.setBackground(new Color(250, 128, 114));
+			btnNewButton_2.setBounds(77, 114, 144, 23);
+			contentPanel.add(btnNewButton_2);
+		}
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(245, 222, 179));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				cancelButton = new JButton("Volver a Iniciar Sesion");
+				cancelButton.setBackground(new Color(250, 128, 114));
 				cancelButton.addActionListener(this);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);

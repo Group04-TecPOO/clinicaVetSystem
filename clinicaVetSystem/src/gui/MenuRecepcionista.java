@@ -75,7 +75,7 @@ public class MenuRecepcionista extends JDialog implements ActionListener {
 			contentPanel.add(lblNewLabel);
 		}
 		{
-			JLabel lblAgendarPaciente = new JLabel("AGENDAR PACIENTE");
+			JLabel lblAgendarPaciente = new JLabel("AGENDAR CITA");
 			lblAgendarPaciente.setHorizontalAlignment(SwingConstants.CENTER);
 			lblAgendarPaciente.setBounds(484, 262, 151, 28);
 			contentPanel.add(lblAgendarPaciente);

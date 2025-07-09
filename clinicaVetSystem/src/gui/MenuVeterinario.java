@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.Color;
 
 public class MenuVeterinario extends JDialog implements ActionListener {
 
@@ -33,17 +35,26 @@ public class MenuVeterinario extends JDialog implements ActionListener {
 	 * Create the dialog.
 	 */
 	public MenuVeterinario() {
-		setBounds(100, 100, 848, 627);
+		setTitle("MENÚ VETERINARIO");
+		setBounds(100, 100, 395, 189);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(245, 255, 250));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Ver citas");
+		btnNewButton.setBackground(new Color(102, 205, 170));
+		btnNewButton.setBounds(118, 39, 147, 42);
+		contentPanel.add(btnNewButton);
 		{
 			JPanel buttonPane = new JPanel();
+			buttonPane.setBackground(new Color(245, 255, 250));
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				cancelButton = new JButton("Volver al Iniciar Sesion");
+				cancelButton.setBackground(new Color(102, 205, 170));
 				cancelButton.addActionListener(this);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
